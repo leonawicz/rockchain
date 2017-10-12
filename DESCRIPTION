@@ -1,0 +1,25 @@
+Package: rockchain
+Version: 0.0.0.9000
+Title: Add Package Description Title Here
+Description: Add package description paragraph here.
+Authors@R: person("Matthew", "Leonawicz", email = "mfleonawicz@alaska.edu", role = c("aut", "cre"))
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+ByteCompile: true
+URL: https://github.com/leonawicz/rockchain
+BugReports: https://github.com/leonawicz/rockchain/issues
+Suggests: 
+    testthat,
+    knitr,
+    rmarkdown,
+    covr
+VignetteBuilder: knitr
+Imports: 
+    dplyr,
+    purrr,
+    jsonlite,
+    magrittr,
+    tibble,
+    tidyr
+RoxygenNote: 6.0.1
