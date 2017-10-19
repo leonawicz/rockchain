@@ -8,6 +8,20 @@ authors:
   Matthew Leonawicz:
     href: http://leonawicz.github.io/
 
+reference:
+- title: Package
+  contents:
+  - rockchain
+- title: Current ticker prices
+  contents:
+  - coin_value
+- title: Wallet information
+  contents:
+  - wallet
+- title: Wallet helpers
+  contents:
+  - wallet_helpers
+
 navbar:
   type: inverse
   right:

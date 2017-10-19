@@ -1,8 +1,11 @@
 Package: rockchain
-Version: 0.0.0.9000
-Title: Add Package Description Title Here
-Description: Add package description paragraph here.
+Version: 0.0.1
+Title: A Blockchain Package For R
+Description: This package provides a simple interface to blockchain.info ticker and wallet data.
+    At this time the package is very basic. It does not offer any additional functionality beyond basic wallet transaction data retrieval 
+    or integrate with other blockchain APIs. It currently only returns bitcoin data. Access to other cryptocurrencies in not yet implemented.
 Authors@R: person("Matthew", "Leonawicz", email = "mfleonawicz@alaska.edu", role = c("aut", "cre"))
+Depends: R (>= 3.4.1)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
