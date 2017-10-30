@@ -1,32 +1,137 @@
-#' Get the current value of a cryptocurrency
+#' Global cryptocurrency market cap
 #'
-#' Get the current value of cryptocurrency in terms of fiat currencies.
+#' Obtain global cryptocurrency market cap data from \code{coinmarketcap.com}.
 #'
-#' The current implementation of this function only accepts code{crypto = "BTC"}.
-#' \code{crypto} and \code{fiat} are not case sensitive.
-#' \code{fiat} may be a vector. If missing, all available fiat currency values are returned.
+#' Return all tracked cryptocurrencies if \code{crypto = NULL}. Return global aggregate market cap if \code{crypto = "global"}.
+#' Otherwise \code{crypto} should be a cryptocurrency ticker symbol, e.g., BTC.
+#' This function is a partial wrapper around \code{\link{ticker}} (when \code{crypto = "global"}).
 #'
-#' @param crypto character, cryptocurrency trading symbol, e.g. BTC.
-#' @param fiat character, fiat currency trading symbol, e.g., USD.
+#' @param crypto character or \code{NULL}, may be a vector. See details.
+#' @param convert character, may be a vector. Currencies to convert \code{crypto} value. These may be fiat or cryptocurrencies.
 #'
 #' @return a data frame.
+#' @seealso \code{\link{ticker}}
 #' @export
 #'
 #' @examples
-#' coin_value()
-coin_value <- function(crypto = "BTC", fiat){
-  crypto <- toupper(crypto)
-  if(crypto != "BTC") stop("Only 'BTC' is currently available for `symbol`.")
-  if(crypto == "BTC") {
-    x <- jsonlite::fromJSON("https://blockchain.info/ticker")
-    symbols <- names(x)
-    x <- purrr::transpose(x) %>% tibble::as_data_frame() %>% tidyr::unnest() %>%
-      dplyr::mutate(currency = symbols)
-    idx <- c(ncol(x), 2:(ncol(x) - 1))
-    x <- dplyr::select(x, idx)
+#' \dontrun{
+#' cap()
+#' cap(crypto = "global")
+#' cap(crypto = c("ETH", "LTC"), convert = c("EUR", "GBP", "BTC"))
+#' }
+cap <- function(crypto = NULL, convert = "USD"){
+  if(!is.null(crypto) && crypto == "global"){
+    purrr::map(convert, ~.cmc_global("https://api.coinmarketcap.com/v1/global/?convert=", .x)) %>%
+      dplyr::bind_rows()
+  } else {
+    ticker(crypto, convert, api = "coinmarketcap.com")
   }
-  if(missing(fiat)) return(x)
-  fiat <- toupper(fiat)
-  if(!inherits(fiat, "character")) stop("Invalid `fiat`")
-  dplyr::filter(x, .data[["currency"]] %in% fiat)
+}
+
+.cmc_global <- function(x, convert){
+  x <- tibble::as_data_frame(jsonlite::fromJSON(paste0(x, convert)))
+  if(convert != "USD") x <- dplyr::select(x, c(7, 8, 3:6))
+  names(x)[1:2] <- c("total_market_cap", "total_24h_volume")
+  dplyr::mutate(x, currency = convert) %>% dplyr::select(c(7, 1:6))
+}
+
+#' Bitcoin ticker data from blockchain.info
+#'
+#' Obtain ticker data for Bitcoin using the \code{blockchain.info} API.
+#'
+#' This function is a wrapper around \code{\link{ticker}}.
+#'
+#' @param fiat character, may be a vector. Fiat currencies to convert Bitcoin value. Return all available if \code{NULL}.
+#'
+#' @return a data frame.
+#' @seealso \code{\link{ticker}}
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' bcinfo()
+#' bcinfo(fiat = c("USD", "EUR", "GBP"))
+#' }
+bcinfo <- function(fiat = NULL){
+  if(any(!fiat %in% fiat_symbols("blockchain.info"))) stop("Invalid `fiat` symbol.")
+  ticker(convert = fiat, api = "blockchain.info")
+}
+
+#' Cryptocurrency ticker/market cap data
+#'
+#' Get cryptocurrency ticker/market cap data from a specified API.
+#'
+#' The current implementation of this function offers two common APIs: \code{coinmarketcap.com} and \code{blockchain.info}.
+#' \code{coinmarketcap.com} returns ticker/market cap information for many different cryptocurrencies and their value
+#' can be expressed in any of several fiat currencies (e.g., USD) or other cryptocurrencies (e.g. BTC).
+#' \code{blockchain.info} is specific to Bitcoin. It only returns Bitcoin information, which can be expressed in any of several fiat currencies.
+#'
+#' \code{crypto} and \code{convert} are not case sensitive. Both arguments are handled somewhat different for each API.
+#' For simplicity, there are available wrapper functions,
+#' \code{\link{cap}} and \code{\link{bcinfo}}, that help separate the APIs and what information you intend to obtain from each.
+#'
+#' \code{crypto} and \code{convert} may be vectors, though of course for \code{blockchain.info}, \code{crypto} is simply ignored.
+#' For \code{coinmarketcap.com}, the default \code{crypto = NULL} will return all available cryptocurrencies tracked by \code{coinmarketcap.com}
+#' \code{convert} may be \code{NULL}. This is handled differently by each API. For \code{coinmarketcap.com}, USD is assumed in order to limit the number of API calls.
+#' For \code{blockchain.info} all available fiat currency-Bitcoin ticker pairs are returned.
+#'
+#' @param crypto character or \code{NULL}, cryptocurrency trading symbol. See details.
+#' @param convert character or \code{NULL}, conversion currency trading symbol. See details.
+#'
+#' @return a data frame. Available columns depend on the selected API.
+#' @seealso \code{\link{cap}}, \code{\link{bcinfo}}
+#' @export
+#'
+#' @examples
+#' \dontrun{
+#' ticker()
+#' ticker(crypto = c("ETH", "LTC"), convert = c("EUR", "GBP", "BTC"))
+#' ticker(api = "blockchain.info")
+#' }
+ticker <- function(crypto = NULL, convert = "USD", api = "coinmarketcap.com"){
+  if(length(api) > 1) stop("Choose one API. See `apis()` for available APIs.")
+  if(!is.null(convert)) convert <- toupper(convert)
+  if(!is.null(crypto)) crypto <- toupper(crypto)
+  if(api == "coinmarketcap.com") x <- .ticker_cmc(convert)
+  if(api == "blockchain.info") x <- .ticker_bcinfo(convert)
+  x
+}
+
+.ticker_cmc <- function(convert = "USD"){
+  if(length(convert) == 1){
+    x <- jsonlite::fromJSON(.ticker_url("coinmarketcap.com", convert))
+  } else {
+    x <- jsonlite::fromJSON(.ticker_url("coinmarketcap.com", convert[1]))
+    convert <- convert[-1]
+    convert <- convert[convert != "USD"]
+    if(length(convert)){
+      x2 <- purrr::map(convert, ~.cmc_convert_cols(.x)) %>% dplyr::bind_cols()
+      x <- dplyr::bind_cols(x, x2)
+    }
+  }
+  x
+}
+
+.ticker_bcinfo <- function(convert = NULL){
+  x <- jsonlite::fromJSON("https://blockchain.info/ticker")
+  symbols <- names(x)
+  x <- purrr::transpose(x) %>% tibble::as_data_frame() %>% tidyr::unnest() %>%
+    dplyr::mutate(currency = symbols)
+  if(!is.null(convert)) x <- dplyr::filter(x, .data[["currency"]] %in% convert)
+  x
+}
+
+.ticker_url <- function(x, convert = "USD"){
+  switch(x,
+         coinmarketcap.com = paste0("https://api.coinmarketcap.com/v1/ticker/?convert=", convert),
+         blockchain.info = "https://blockchain.info/ticker")
+}
+
+.cmc_convert_cols <- function(convert){
+  x <- jsonlite::fromJSON(.ticker_url("coinmarketcap.com", convert))
+  y <- names(x)
+  drops <- c("price_usd", "price_btc", "24h_volume_usd", "market_cap_usd")
+  keeps <- c("price_", "24h_vo", "market")
+  idx <- which(!y %in% drops & substr(y, 1, 6) %in% keeps)
+  dplyr::select(x, idx)
 }
