@@ -1,9 +1,9 @@
-#' Avaliable cryptocurrencies.
+#' Available cryptocurrencies.
 #'
 #' Available cryptocurrencies, Bitcoin and altcoins, on \code{coinmarketcap.com}.
 #'
 #' @format A data frame with 1234 rows and 3 columns: cryptocurrency \code{id}, \code{name} and ticker \code{symbol}.
-#' This data frame provides the list of available cryptocurrenices at the time of package publication.
+#' This data frame provides the list of available cryptocurrencies at the time of package publication.
 #' In case this table is out of date, the full current list can always be obtained from the first three columns returned by \code{\link{ticker}}.
 "coins"
 
@@ -54,3 +54,14 @@ coin_symbol <- function(x){
   if(length(x) > length(y))
     stop("Invalid coin provided. See `rockchain::coins` data set.")
 }
+
+#' Unit test wallet data examples.
+#'
+#' Example downloaded wallet data from the \code{coinmarketcap.com} API.
+#'
+#' This data is only used for unit testing during package development and maintenance. It only exists so that unit tests can be run when the
+#' \code{blockchain.info} API is being extremely fussy and constantly rejecting API calls. This is not a permanent solution. Eventually
+#' the data set will be removed and, if necessary, an alternative, more dependable Bitcoin blockchain API will be used instead of \code{blockchain.info}.
+#'
+#' @format A list of seven wallet lists.
+"wlt"

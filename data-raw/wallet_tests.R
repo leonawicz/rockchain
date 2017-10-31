@@ -1,0 +1,10 @@
+wlt <- vector("list", 7)
+wlt[[1]] <- wallet("1KennyH9grzif79WbaQDHpqgTnm25j4rRj")
+id <- "115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn"
+wlt[[2]] <- wallet(id)
+wlt[[3]] <- wallet(id, satoshi = TRUE)
+wlt[[4]] <- wallet(id, offset = 10)
+wlt[[5]] <- wallet(id, offset = 10, tx_max = NULL)
+wlt[[6]] <- wallet(id, offset = 10, tx_max = 1000)
+wlt[[7]] <- wallet(id, offset = 100)
+usethis::use_data(wlt)
