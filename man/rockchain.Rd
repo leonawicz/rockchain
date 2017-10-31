@@ -4,8 +4,11 @@
 \name{rockchain}
 \alias{rockchain}
 \alias{rockchain-package}
-\title{rockchain: access blockchain and cryptocurrency data.}
+\title{rockchain: a blockchain package for R.}
 \description{
+Access blockchain and cryptocurrency data.
+}
+\details{
 The \code{rockchain} package provides simple interfaces to \href{https://coinmarketcap.com/}{coinmarketcap.com} ticker and market cap data and
 \href{https://blockchain.info/}{blockchain.info} ticker and Bitcoin wallet data.
 The current package does not yet support additional blockchain APIs.

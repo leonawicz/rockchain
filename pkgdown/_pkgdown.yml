@@ -12,15 +12,23 @@ reference:
 - title: Package
   contents:
   - rockchain
-- title: Current ticker prices
+- title: Coin metadata and helpers
   contents:
-  - coin_value
-- title: Wallet information
+  - coins
+  - coin_helpers
+- title: Current ticker/market cap
+  contents:
+  - cap
+  - bcinfo
+  - ticker
+- title: Wallet transaction data
   contents:
   - wallet
-- title: Wallet helpers
-  contents:
   - wallet_helpers
+- title: Other helper functions
+  contents:
+  - apis
+  - fiat_symbols
 
 navbar:
   type: inverse

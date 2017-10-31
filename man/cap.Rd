@@ -4,10 +4,10 @@
 \alias{cap}
 \title{Global cryptocurrency market cap}
 \usage{
-cap(crypto = NULL, convert = "USD")
+cap(crypto = NULL, convert = "USD", limit = NULL)
 }
 \arguments{
-\item{crypto}{character or \code{NULL}, may be a vector. See details.}
+\item{crypto}{character, integer or \code{NULL}, may be a vector. See details.}
 
 \item{convert}{character, may be a vector. Currencies to convert \code{crypto} value. These may be fiat or cryptocurrencies.}
 }
@@ -19,7 +19,8 @@ Obtain global cryptocurrency market cap data from \code{coinmarketcap.com}.
 }
 \details{
 Return all tracked cryptocurrencies if \code{crypto = NULL}. Return global aggregate market cap if \code{crypto = "global"}.
-Otherwise \code{crypto} should be a cryptocurrency ticker symbol, e.g., BTC.
+If an integer, return the top \code{crypto} cryptocurrencies by market cap.
+Otherwise \code{crypto} should be a vector of cryptocurrency ticker symbols, e.g., BTC.
 This function is a partial wrapper around \code{\link{ticker}} (when \code{crypto = "global"}).
 }
 \examples{

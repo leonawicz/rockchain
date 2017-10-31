@@ -7,7 +7,7 @@
 ticker(crypto = NULL, convert = "USD", api = "coinmarketcap.com")
 }
 \arguments{
-\item{crypto}{character or \code{NULL}, cryptocurrency trading symbol. See details.}
+\item{crypto}{character, integer or \code{NULL}. See details.}
 
 \item{convert}{character or \code{NULL}, conversion currency trading symbol. See details.}
 }
@@ -23,18 +23,21 @@ The current implementation of this function offers two common APIs: \code{coinma
 can be expressed in any of several fiat currencies (e.g., USD) or other cryptocurrencies (e.g. BTC).
 \code{blockchain.info} is specific to Bitcoin. It only returns Bitcoin information, which can be expressed in any of several fiat currencies.
 
-\code{crypto} and \code{convert} are not case sensitive. Both arguments are handled somewhat different for each API.
+\code{crypto} and \code{convert} are not case sensitive to cryptocurrency ticker symbols. Both arguments are handled somewhat different for each API.
 For simplicity, there are available wrapper functions,
 \code{\link{cap}} and \code{\link{bcinfo}}, that help separate the APIs and what information you intend to obtain from each.
 
 \code{crypto} and \code{convert} may be vectors, though of course for \code{blockchain.info}, \code{crypto} is simply ignored.
-For \code{coinmarketcap.com}, the default \code{crypto = NULL} will return all available cryptocurrencies tracked by \code{coinmarketcap.com}
+For \code{coinmarketcap.com}, the default \code{crypto = NULL} will return all available cryptocurrencies tracked by \code{coinmarketcap.com}.
+If an integer, the top \code{crypto} cryptocurrencies by market cap are returned by the \code{coinmarketcap.com} API.
+
 \code{convert} may be \code{NULL}. This is handled differently by each API. For \code{coinmarketcap.com}, USD is assumed in order to limit the number of API calls.
 For \code{blockchain.info} all available fiat currency-Bitcoin ticker pairs are returned.
 }
 \examples{
 \dontrun{
 ticker()
+ticker(crypto = 5)
 ticker(crypto = c("ETH", "LTC"), convert = c("EUR", "GBP", "BTC"))
 ticker(api = "blockchain.info")
 }
