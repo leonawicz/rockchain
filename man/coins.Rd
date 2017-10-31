@@ -6,7 +6,7 @@
 \title{Avaliable cryptocurrencies.}
 \format{A data frame with 1234 rows and 3 columns: cryptocurrency \code{id}, \code{name} and ticker \code{symbol}.
 This data frame provides the list of available cryptocurrenices at the time of package publication.
-In case this table is out of date, the full current list can always be obtained from the first three columns returned by \link{code{ticker}}.}
+In case this table is out of date, the full current list can always be obtained from the first three columns returned by \code{\link{ticker}}.}
 \usage{
 coins
 }

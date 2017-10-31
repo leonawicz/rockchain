@@ -20,7 +20,7 @@
 #' cap(crypto = "global")
 #' cap(crypto = c("ETH", "LTC"), convert = c("EUR", "GBP", "BTC"))
 #' }
-cap <- function(crypto = NULL, convert = "USD", limit = NULL){
+cap <- function(crypto = NULL, convert = "USD"){
   if(!is.null(crypto) && length(crypto) == 1 && crypto == "global"){
     purrr::map(convert, ~.cmc_global("https://api.coinmarketcap.com/v1/global/?convert=", .x)) %>%
       dplyr::bind_rows()
@@ -82,6 +82,7 @@ bcinfo <- function(fiat = NULL){
 #'
 #' @param crypto character, integer or \code{NULL}. See details.
 #' @param convert character or \code{NULL}, conversion currency trading symbol. See details.
+#' @param api character, the API to use. Defaults to \code{"coinmarketcap.com"}. See \code{\link{apis}}.
 #'
 #' @return a data frame. Available columns depend on the selected API.
 #' @seealso \code{\link{cap}}, \code{\link{bcinfo}}

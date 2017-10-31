@@ -10,6 +10,8 @@ ticker(crypto = NULL, convert = "USD", api = "coinmarketcap.com")
 \item{crypto}{character, integer or \code{NULL}. See details.}
 
 \item{convert}{character or \code{NULL}, conversion currency trading symbol. See details.}
+
+\item{api}{character, the API to use. Defaults to \code{"coinmarketcap.com"}. See \code{\link{apis}}.}
 }
 \value{
 a data frame. Available columns depend on the selected API.

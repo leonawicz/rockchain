@@ -4,7 +4,7 @@
 \alias{cap}
 \title{Global cryptocurrency market cap}
 \usage{
-cap(crypto = NULL, convert = "USD", limit = NULL)
+cap(crypto = NULL, convert = "USD")
 }
 \arguments{
 \item{crypto}{character, integer or \code{NULL}, may be a vector. See details.}

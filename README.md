@@ -26,22 +26,24 @@ cap()
 #> # A tibble: 1,234 x 14
 #>              id         name symbol  rank price_usd  price_btc
 #>  *        <chr>        <chr>  <chr> <chr>     <chr>      <chr>
-#>  1      bitcoin      Bitcoin    BTC     1   6132.02        1.0
-#>  2     ethereum     Ethereum    ETH     2   307.378  0.0501613
-#>  3       ripple       Ripple    XRP     3  0.202405 0.00003303
-#>  4 bitcoin-cash Bitcoin Cash    BCH     4   449.369  0.0733328
-#>  5     litecoin     Litecoin    LTC     5    56.365 0.00919825
-#>  6         dash         Dash   DASH     6   285.386  0.0465723
-#>  7          neo          NEO    NEO     7   28.6905 0.00468203
-#>  8          nem          NEM    XEM     8  0.199406 0.00003254
-#>  9   bitconnect   BitConnect    BCC     9   227.381  0.0371065
-#> 10       monero       Monero    XMR    10   88.7478  0.0144828
+#>  1      bitcoin      Bitcoin    BTC     1   6134.97        1.0
+#>  2     ethereum     Ethereum    ETH     2   307.571  0.0500859
+#>  3       ripple       Ripple    XRP     3  0.202436 0.00003297
+#>  4 bitcoin-cash Bitcoin Cash    BCH     4   451.641  0.0735468
+#>  5     litecoin     Litecoin    LTC     5   56.4311 0.00918943
+#>  6         dash         Dash   DASH     6   286.051  0.0465815
+#>  7          neo          NEO    NEO     7   28.8074  0.0046911
+#>  8          nem          NEM    XEM     8  0.199491 0.00003249
+#>  9   bitconnect   BitConnect    BCC     9   227.886  0.0371097
+#> 10       monero       Monero    XMR    10   88.8047  0.0144613
 #> # ... with 1,224 more rows, and 8 more variables: `24h_volume_usd` <chr>,
 #> #   market_cap_usd <chr>, available_supply <chr>, total_supply <chr>,
 #> #   percent_change_1h <chr>, percent_change_24h <chr>,
 #> #   percent_change_7d <chr>, last_updated <chr>
 
 w <- wallet("115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn")
+#> Please wait for connection...
+#> Please wait for connection...
 balance(w)
 #> [1] 0.09
 ```
