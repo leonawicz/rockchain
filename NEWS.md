@@ -2,6 +2,7 @@
 
 * Added integer option to `cap` and `ticker` to return the top n cryptocurrencies by market cap via the `coinmarketcap.com` API.
 * Added `coins` metadata data set and related helper functions for direct access to stored cryptocurrency IDs, names and symbols.
+* Added introduction vignette content.
 * Added unit tests.
 * Updated documentation.
 

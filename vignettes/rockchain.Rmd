@@ -1,10 +1,182 @@
 ---
-title: "Vignette Title"
-author: "Vignette Author"
+title: "Introduction to rockchain"
+author: "Matthew Leonawicz"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteIndexEntry{Introduction to rockchain}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE, comment = "#>", fig.path = "man/figures/README-",
+  message = FALSE, warning = FALSE, error = FALSE, tidy = TRUE
+)
+```
+
+The `rockchain` package provides simple interfaces to [coinmarketcap.com](https://coinmarketcap.com/) ticker and market cap data and [blockchain.info](https://blockchain.info/) ticker and Bitcoin wallet data. The current package does not yet support additional blockchain APIs, but will in the future. For now, it offers cryptocurrency market data retrieval and Bitcoin wallet transaction data retrieval via the two currently available APIs.
+
+# Ticker and marketcap data
+
+The default API for ticker and market cap data is the `coinmarketcap.com` API. The site provides up-to-date cryptocurrency prices for Bitcoin and over a thousand "altcoins" (non-Bitcoin cryptocurrencies). While Bitcoin enjoys a large percentage of the total global cryptocurrency market cap, a number of altcoins also have large market caps, at least by current cryptocurrency standards. These include altcoins such as Ethereum (ETH) and Litecoin (LTC). Many others do not. And many of these that also do not have much to offer in terms of known technological or practical value are sometimes referred to as shitcoins; Buyer beware.
+
+## The coinmarketcap.com ticker
+
+To look at the entire ticker from `coinmarketcap.com` all you need is to call `cap()`. Below are several ways you can use `cap`.
+First return the entire ticker with cryptocurrency prices in USD.
+
+```{r cap1}
+library(rockchain)
+cap()
+```
+
+The first argument, `crypto`, is `NULL` by default. Alternatively, passing it an integer will return the top `crypto` number of cryptocurrencies by market cap as a tibble data frame.
+
+```{r cap2}
+cap(crypto = 5)
+```
+
+If you want ticker data for specific cryptocurrencies, you can filter the results of `cap()` or you can specify them during the call.
+Passing a single cryptocurrency ticker symbol vs. more than one technically uses two different API endpoints but the results are formatted to what you would expect. Note that symbols are not case sensitive: e.g., `"btc"` is the same as `"BTC"`.
+
+```{r cap3}
+cap(crypto = "BTC")
+
+cap(crypto = c("ETH", "LTC"))
+```
+
+The results always include USD and Bitcoin price, USD market cap and USD 24-hour trading volume by default. Using `convert` to obtain price, market cap and volume in other currencies adds new columns onto the end of the table. `convert` may be a vector. It may also include other cryptocurrency symbols, not just fiat currencies.
+
+```{r cap4}
+cap(crypto = "ETH", convert = c("EUR", "GBP")) %>% select(15:20)
+
+cap(crypto = "BTC", convert = "ETH") %>% select(15:17)
+```
+
+## Total global market cap
+
+The easiest way to obtain the total global market cap of all cryptocurrencies is to use the global endpoint of the `coinmarketcap.com` API. This is done by passing `crypto = "global"`.
+
+```{r global}
+cap(crypto = "global")
+```
+
+At this point you have seen three different ways to specify `crypto`: either as `NULL` to yield the full ticker, an integer to yield to top coins by market cap, or as a character vector ticker symbols for the specific cryptocurrencies of interest.
+
+## blockchain.info ticker
+
+If you are looking at Bitcoin only and working specifically with the `blockchain.info` API, you can also obtain ticker information for Bitcoin with `bcinfo`. There is only a `fiat` argument, analogous to `convert`, since `blockchain.info` is specific to Bitcoin and ticker results from the API are only available in fiat currencies.
+
+```{r bcinfo}
+bcinfo()
+
+bcinfo(fiat = "GBP")
+```
+
+## Wrappers for `ticker`
+
+Both of these functions wrap around `ticker` and exist to provide some basic separation of the different behavior of the two APIs and the kind of data they provide. If you use `ticker` directly, more attention should be paid to the different handling of `ticker` arguments depending on whether you specify the default `api = "coinmarketcap.com"` or the alternative `api = "blockchain.info"`. Using the default API, the two functions are essentially the same, and slightly different with the alternative. See the help documentation for details. The following pairs are equivalent calls.
+
+```{r ticker, eval=FALSE}
+ticker()
+cap()
+
+ticker(crypto = 5)
+cap(crypto = 5)
+
+ticker(crypto = c("ETH", "LTC"), convert = c("EUR", "GBP", "BTC"))
+cap(crypto = c("ETH", "LTC"), convert = c("EUR", "GBP", "BTC"))
+
+ticker(convert = NULL, api = "blockchain.info")
+bcinfo()
+```
+
+## Ticker-related helper functions
+
+In addition to the `blockchain.info` API being specific to Bitcoin and offering conversion only to fiat currencies for ticker prices, it also does not support as many fiat currencies as the `coinmarketcap.com` API. 
+
+```{r fiat_symbols}
+fiat_symbols()
+length(fiat_symbols(api = "coinmarketcap.com"))
+length(fiat_symbols(api = "blockchain.info"))
+```
+
+Previously, `cap()` returned well over 1,000 cryptocurrencies. `rockchain` includes a data set, `coins`, that provides the cryptocurrency names, ticker symbols, and IDs (as used by the `coinmarketcap.com` API) for all of these altcoins, at least as of the time of package publication. While an updated table can always be obtained just using the first three columns of `cap()`, the `coins` data set is a convenient way to access much of this coin metadata without making an API call. 
+
+There are also a few related convenient lookup functions for finding IDs, names or symbols from either of the other two.
+
+```{r coins}
+coins
+
+coin_id("btc")
+coin_name(c("BTC", "eth"))
+coin_symbol(c("bitcoin", "Bitcoin Cash"))
+```
+
+# Wallet transaction data
+
+The current version of `rockchain` supports Bitcoin wallet data retrieval from the Bitcoin blockchain using the `blockchain.info` API. Future package versions will add support for other blockchains and currencies.
+
+## Wallet structure and accessor functions
+
+The `wallet` function returns a list. This list also has class `wallet`. The length of the wallet list is equal to the number of wallet addresses you pass to `id`. The wallet will be a list even if you only pass a single address. This keeps the object structure consistent. It is also convenient to attach the `wallet` class to the outer list rather than the inner tibbles; `rockchain` functions operate on the former whereas a user is more likely to alter the latter after extracting from the wallet list.
+
+Several convenient accessors are provided. These are simple getter functions. They are vectorized to return information pertaining to all elements of a wallet list.
+
+```{r wallet1}
+id <- c("115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn", "1KennyH9grzif79WbaQDHpqgTnm25j4rRj")
+w <- wallet(id) # a wallet list with two addresses
+balance(w) # check the balance, vectorized
+format(balance(w), scientific = FALSE) # Bitcoin is expensive.
+```
+
+Here are all of the available getter functions.
+
+```{r wallet2}
+id <- c("115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn", "1KennyH9grzif79WbaQDHpqgTnm25j4rRj")
+w <- wallet(id) # a wallet list with two addresses
+hash(w)
+address(w)
+received(w) # total Bitcoin received
+sent(w) # total Bitcoin sent
+balance(w) # final Bitcoin balance
+txn(w) # total number of transactions
+transactions(w) # transaction details
+```
+
+Note the discrepancy between the number of transactions reported by `txn` and the number of rows in the transaction details tibble returned by `transactions` for the second wallet address: 101 vs. 115. There are two important things to note going on here. 
+
+First, `txn` always provides the total number of wallet transactions. However, `wallet` does not automatically retrieve the complete transaction details history from the `blockchain.info` API. In fact, it only gives you 50 transactions by default. `wallet` makes repeated calls to the API for you, breaking calls up using a series of transaction offsets, so that you are not only given the first 50 if there are more available. `wallet` still imposes a safety cap at 100 total transactions in the event you are carelessly requesting all transactions from a wallet that has an extensive transaction history. You can override this by setting a higher cap beyond the default `tx_max = 100` or set it to `NULL` for "unlimited", though for large transaction records there is not real intent to support to `NULL` option. You will always be constrained by the limits imposed by the API.
+
+But that brings the total to 100 whereas the total transactions in the table is 101. The final transaction comes from a row bind of the two wallets. These can be filtered using the final column, `address`, that has been added to the table.
+
+## API connection issues
+
+If you have trouble connecting, `wallet` will retry for you, up to `max_attempts` times. The default is ten attempts. It is not unusual to be rejected by the API if you make many calls. Notifications are printed to the console if `wallet` has to try more than once as well as if if fails `max_attempts` times.
+
+## Other wallet arguments
+
+By default, the `blockchain.info` API returns Bitcoin values in Satoshis. One Satoshi is the smallest unit of value, equal to $`1 / 10^7`$ Bitcoin.
+But since many APIs and websites report value in Bitcoin, `rockchain` does the same. This can be switched with `satoshi = TRUE`. This affects the total received, total sent, final balance, and the `value` column inside the `out` data frames that appear in the transaction details table.
+
+```{r wallet3}
+id <- "115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn"
+w <- wallet(id)
+w2 <- wallet(id, satoshi = TRUE)
+balance(w2) == balance(w) * 10^7
+```
+
+An `offset` can used passed to shift the starting point of the transaction record. The default offset is zero.
+
+```{r wallet4}
+w2 <- wallet(id, offset = 10)
+transactions(w2)$tx_index[1] == transactions(w)$tx_index[11]
+```
+
+# Plotting data
+
+While packages like `ggplot2` can be leveraged to plot the data directly however you see fit, there are some stock plot functions available in `rockchain`.
+
+More content to be added...
