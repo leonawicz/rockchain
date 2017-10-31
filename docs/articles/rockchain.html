@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vignette Title • rockchain</title>
+<title>Introduction to rockchain • rockchain</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
@@ -123,20 +123,162 @@
       </header><div class="row">
   <div class="col-md-9">
     <div class="page-header toc-ignore">
-      <h1>Vignette Title</h1>
-                        <h4 class="author">Vignette Author</h4>
+      <h1>Introduction to rockchain</h1>
+                        <h4 class="author">Matthew Leonawicz</h4>
             
-            <h4 class="date">2017-10-30</h4>
+            <h4 class="date">2017-10-31</h4>
           </div>
 
     
     
 <div class="contents">
+<p>The <code>rockchain</code> package provides simple interfaces to <a href="https://coinmarketcap.com/">coinmarketcap.com</a> ticker and market cap data and <a href="https://blockchain.info/">blockchain.info</a> ticker and Bitcoin wallet data. The current package does not yet support additional blockchain APIs, but will in the future. For now, it offers cryptocurrency market data retrieval and Bitcoin wallet transaction data retrieval via the two currently available APIs.</p>
+<div id="ticker-and-marketcap-data" class="section level1">
+<h1 class="hasAnchor">
+<a href="#ticker-and-marketcap-data" class="anchor"></a>Ticker and marketcap data</h1>
+<p>The default API for ticker and market cap data is the <code>coinmarketcap.com</code> API. The site provides up-to-date cryptocurrency prices for Bitcoin and over a thousand “altcoins” (non-Bitcoin cryptocurrencies). While Bitcoin enjoys a large percentage of the total global cryptocurrency market cap, a number of altcoins also have large market caps, at least by current cryptocurrency standards. These include altcoins such as Ethereum (ETH) and Litecoin (LTC). Many others do not. And many of these that also do not have much to offer in terms of known technological or practical value are sometimes referred to as shitcoins; Buyer beware.</p>
+<div id="the-coinmarketcap-com-ticker" class="section level2">
+<h2 class="hasAnchor">
+<a href="#the-coinmarketcap-com-ticker" class="anchor"></a>The coinmarketcap.com ticker</h2>
+<p>To look at the entire ticker from <code>coinmarketcap.com</code> all you need is to call <code><a href="../reference/cap.html">cap()</a></code>. Below are several ways you can use <code>cap</code>. First return the entire ticker with cryptocurrency prices in USD.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rockchain)
+<span class="kw"><a href="../reference/cap.html">cap</a></span>()</code></pre></div>
+<p>The first argument, <code>crypto</code>, is <code>NULL</code> by default. Alternatively, passing it an integer will return the top <code>crypto</code> number of cryptocurrencies by market cap as a tibble data frame.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/cap.html">cap</a></span>(<span class="dt">crypto =</span> <span class="dv">5</span>)</code></pre></div>
+<p>If you want ticker data for specific cryptocurrencies, you can filter the results of <code><a href="../reference/cap.html">cap()</a></code> or you can specify them during the call. Passing a single cryptocurrency ticker symbol vs. more than one technically uses two different API endpoints but the results are formatted to what you would expect. Note that symbols are not case sensitive: e.g., <code>"btc"</code> is the same as <code>"BTC"</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/cap.html">cap</a></span>(<span class="dt">crypto =</span> <span class="st">"BTC"</span>)
 
+<span class="kw"><a href="../reference/cap.html">cap</a></span>(<span class="dt">crypto =</span> <span class="kw">c</span>(<span class="st">"ETH"</span>, <span class="st">"LTC"</span>))</code></pre></div>
+<p>The results always include USD and Bitcoin price, USD market cap and USD 24-hour trading volume by default. Using <code>convert</code> to obtain price, market cap and volume in other currencies adds new columns onto the end of the table. <code>convert</code> may be a vector. It may also include other cryptocurrency symbols, not just fiat currencies.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
+<span class="kw"><a href="../reference/cap.html">cap</a></span>(<span class="dt">crypto =</span> <span class="st">"ETH"</span>, <span class="dt">convert =</span> <span class="kw">c</span>(<span class="st">"EUR"</span>, <span class="st">"GBP"</span>)) %&gt;%<span class="st"> </span><span class="kw">select</span>(<span class="dv">15</span>:<span class="dv">20</span>)
+
+<span class="kw"><a href="../reference/cap.html">cap</a></span>(<span class="dt">crypto =</span> <span class="st">"BTC"</span>, <span class="dt">convert =</span> <span class="st">"ETH"</span>) %&gt;%<span class="st"> </span><span class="kw">select</span>(<span class="dv">15</span>:<span class="dv">17</span>)</code></pre></div>
+</div>
+<div id="total-global-market-cap" class="section level2">
+<h2 class="hasAnchor">
+<a href="#total-global-market-cap" class="anchor"></a>Total global market cap</h2>
+<p>The easiest way to obtain the total global market cap of all cryptocurrencies is to use the global endpoint of the <code>coinmarketcap.com</code> API. This is done by passing <code>crypto = "global"</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/cap.html">cap</a></span>(<span class="dt">crypto =</span> <span class="st">"global"</span>)</code></pre></div>
+<p>At this point you have seen three different ways to specify <code>crypto</code>: either as <code>NULL</code> to yield the full ticker, an integer to yield to top coins by market cap, or as a character vector ticker symbols for the specific cryptocurrencies of interest.</p>
+</div>
+<div id="blockchain-info-ticker" class="section level2">
+<h2 class="hasAnchor">
+<a href="#blockchain-info-ticker" class="anchor"></a>blockchain.info ticker</h2>
+<p>If you are looking at Bitcoin only and working specifically with the <code>blockchain.info</code> API, you can also obtain ticker information for Bitcoin with <code>bcinfo</code>. There is only a <code>fiat</code> argument, analogous to <code>convert</code>, since <code>blockchain.info</code> is specific to Bitcoin and ticker results from the API are only available in fiat currencies.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/bcinfo.html">bcinfo</a></span>()
+
+<span class="kw"><a href="../reference/bcinfo.html">bcinfo</a></span>(<span class="dt">fiat =</span> <span class="st">"GBP"</span>)</code></pre></div>
+</div>
+<div id="wrappers-for-ticker" class="section level2">
+<h2 class="hasAnchor">
+<a href="#wrappers-for-ticker" class="anchor"></a>Wrappers for <code>ticker</code>
+</h2>
+<p>Both of these functions wrap around <code>ticker</code> and exist to provide some basic separation of the different behavior of the two APIs and the kind of data they provide. If you use <code>ticker</code> directly, more attention should be paid to the different handling of <code>ticker</code> arguments depending on whether you specify the default <code>api = "coinmarketcap.com"</code> or the alternative <code>api = "blockchain.info"</code>. Using the default API, the two functions are essentially the same, and slightly different with the alternative. See the help documentation for details. The following pairs are equivalent calls.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/ticker.html">ticker</a></span>()
+<span class="kw"><a href="../reference/cap.html">cap</a></span>()
+
+<span class="kw"><a href="../reference/ticker.html">ticker</a></span>(<span class="dt">crypto =</span> <span class="dv">5</span>)
+<span class="kw"><a href="../reference/cap.html">cap</a></span>(<span class="dt">crypto =</span> <span class="dv">5</span>)
+
+<span class="kw"><a href="../reference/ticker.html">ticker</a></span>(<span class="dt">crypto =</span> <span class="kw">c</span>(<span class="st">"ETH"</span>, <span class="st">"LTC"</span>), <span class="dt">convert =</span> <span class="kw">c</span>(<span class="st">"EUR"</span>, <span class="st">"GBP"</span>, <span class="st">"BTC"</span>))
+<span class="kw"><a href="../reference/cap.html">cap</a></span>(<span class="dt">crypto =</span> <span class="kw">c</span>(<span class="st">"ETH"</span>, <span class="st">"LTC"</span>), <span class="dt">convert =</span> <span class="kw">c</span>(<span class="st">"EUR"</span>, <span class="st">"GBP"</span>, <span class="st">"BTC"</span>))
+
+<span class="kw"><a href="../reference/ticker.html">ticker</a></span>(<span class="dt">convert =</span> <span class="ot">NULL</span>, <span class="dt">api =</span> <span class="st">"blockchain.info"</span>)
+<span class="kw"><a href="../reference/bcinfo.html">bcinfo</a></span>()</code></pre></div>
+</div>
+<div id="ticker-related-helper-functions" class="section level2">
+<h2 class="hasAnchor">
+<a href="#ticker-related-helper-functions" class="anchor"></a>Ticker-related helper functions</h2>
+<p>In addition to the <code>blockchain.info</code> API being specific to Bitcoin and offering conversion only to fiat currencies for ticker prices, it also does not support as many fiat currencies as the <code>coinmarketcap.com</code> API.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/fiat_symbols.html">fiat_symbols</a></span>()
+<span class="kw">length</span>(<span class="kw"><a href="../reference/fiat_symbols.html">fiat_symbols</a></span>(<span class="dt">api =</span> <span class="st">"coinmarketcap.com"</span>))
+<span class="kw">length</span>(<span class="kw"><a href="../reference/fiat_symbols.html">fiat_symbols</a></span>(<span class="dt">api =</span> <span class="st">"blockchain.info"</span>))</code></pre></div>
+<p>Previously, <code><a href="../reference/cap.html">cap()</a></code> returned well over 1,000 cryptocurrencies. <code>rockchain</code> includes a data set, <code>coins</code>, that provides the cryptocurrency names, ticker symbols, and IDs (as used by the <code>coinmarketcap.com</code> API) for all of these altcoins, at least as of the time of package publication. While an updated table can always be obtained just using the first three columns of <code><a href="../reference/cap.html">cap()</a></code>, the <code>coins</code> data set is a convenient way to access much of this coin metadata without making an API call.</p>
+<p>There are also a few related convenient lookup functions for finding IDs, names or symbols from either of the other two.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">coins
+
+<span class="kw"><a href="../reference/coin_helpers.html">coin_id</a></span>(<span class="st">"btc"</span>)
+<span class="kw"><a href="../reference/coin_helpers.html">coin_name</a></span>(<span class="kw">c</span>(<span class="st">"BTC"</span>, <span class="st">"eth"</span>))
+<span class="kw"><a href="../reference/coin_helpers.html">coin_symbol</a></span>(<span class="kw">c</span>(<span class="st">"bitcoin"</span>, <span class="st">"Bitcoin Cash"</span>))</code></pre></div>
+</div>
+</div>
+<div id="wallet-transaction-data" class="section level1">
+<h1 class="hasAnchor">
+<a href="#wallet-transaction-data" class="anchor"></a>Wallet transaction data</h1>
+<p>The current version of <code>rockchain</code> supports Bitcoin wallet data retrieval from the Bitcoin blockchain using the <code>blockchain.info</code> API. Future package versions will add support for other blockchains and currencies.</p>
+<div id="wallet-structure-and-accessor-functions" class="section level2">
+<h2 class="hasAnchor">
+<a href="#wallet-structure-and-accessor-functions" class="anchor"></a>Wallet structure and accessor functions</h2>
+<p>The <code>wallet</code> function returns a list. This list also has class <code>wallet</code>. The length of the wallet list is equal to the number of wallet addresses you pass to <code>id</code>. The wallet will be a list even if you only pass a single address. This keeps the object structure consistent. It is also convenient to attach the <code>wallet</code> class to the outer list rather than the inner tibbles; <code>rockchain</code> functions operate on the former whereas a user is more likely to alter the latter after extracting from the wallet list.</p>
+<p>Several convenient accessors are provided. These are simple getter functions. They are vectorized to return information pertaining to all elements of a wallet list.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">id &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn"</span>, <span class="st">"1KennyH9grzif79WbaQDHpqgTnm25j4rRj"</span>)
+w &lt;-<span class="st"> </span><span class="kw"><a href="../reference/wallet.html">wallet</a></span>(id)  <span class="co"># a wallet list with two addresses</span>
+<span class="kw"><a href="../reference/wallet_helpers.html">balance</a></span>(w)  <span class="co"># check the balance, vectorized</span>
+<span class="kw">format</span>(<span class="kw"><a href="../reference/wallet_helpers.html">balance</a></span>(w), <span class="dt">scientific =</span> <span class="ot">FALSE</span>)  <span class="co"># Bitcoin is expensive.</span></code></pre></div>
+<p>Here are all of the available getter functions.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/wallet_helpers.html">hash</a></span>(w)
+<span class="kw"><a href="../reference/wallet_helpers.html">address</a></span>(w)
+<span class="kw"><a href="../reference/wallet_helpers.html">received</a></span>(w)  <span class="co"># total Bitcoin received</span>
+<span class="kw"><a href="../reference/wallet_helpers.html">sent</a></span>(w)  <span class="co"># total Bitcoin sent</span>
+<span class="kw"><a href="../reference/wallet_helpers.html">balance</a></span>(w)  <span class="co"># final Bitcoin balance</span>
+<span class="kw"><a href="../reference/wallet_helpers.html">txn</a></span>(w)  <span class="co"># total number of transactions</span>
+<span class="kw"><a href="../reference/wallet_helpers.html">transactions</a></span>(w)  <span class="co"># transaction details</span></code></pre></div>
+<p>Note the discrepancy between the number of transactions reported by <code>txn</code> and the number of rows in the transaction details tibble returned by <code>transactions</code> for the second wallet address: 101 vs. 115. There are two important things to note going on here.</p>
+<p>First, <code>txn</code> always provides the total number of wallet transactions. However, <code>wallet</code> does not automatically retrieve the complete transaction details history from the <code>blockchain.info</code> API. In fact, it only gives you 50 transactions by default. <code>wallet</code> makes repeated calls to the API for you, breaking calls up using a series of transaction offsets, so that you are not only given the first 50 if there are more available. <code>wallet</code> still imposes a safety cap at 100 total transactions in the event you are carelessly requesting all transactions from a wallet that has an extensive transaction history. You can override this by setting a higher cap beyond the default <code>tx_max = 100</code> or set it to <code>NULL</code> for “unlimited”, though for large transaction records there is not real intent to support to <code>NULL</code> option. You will always be constrained by the limits imposed by the API.</p>
+<p>But that brings the total to 100 whereas the total transactions in the table is 101. The final transaction comes from a row bind of the two wallets. These can be filtered using the final column, <code>address</code>, that has been added to the table.</p>
+</div>
+<div id="api-connection-issues" class="section level2">
+<h2 class="hasAnchor">
+<a href="#api-connection-issues" class="anchor"></a>API connection issues</h2>
+<p>If you have trouble connecting, <code>wallet</code> will retry for you, up to <code>max_attempts</code> times. The default is ten attempts. It is not unusual to be rejected by the API if you make many calls. Notifications are printed to the console if <code>wallet</code> has to try more than once as well as if if fails <code>max_attempts</code> times.</p>
+</div>
+<div id="other-wallet-arguments" class="section level2">
+<h2 class="hasAnchor">
+<a href="#other-wallet-arguments" class="anchor"></a>Other wallet arguments</h2>
+<p>By default, the <code>blockchain.info</code> API returns Bitcoin values in Satoshis. One Satoshi is the smallest unit of value, equal to <span class="math inline">\(`1 / 10^7`\)</span> Bitcoin. But since many APIs and websites report value in Bitcoin, <code>rockchain</code> does the same. This can be switched with <code>satoshi = TRUE</code>. This affects the total received, total sent, final balance, and the <code>value</code> column inside the <code>out</code> data frames that appear in the transaction details table.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">id &lt;-<span class="st"> "115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn"</span>
+w &lt;-<span class="st"> </span><span class="kw"><a href="../reference/wallet.html">wallet</a></span>(id)
+w2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/wallet.html">wallet</a></span>(id, <span class="dt">satoshi =</span> <span class="ot">TRUE</span>)
+<span class="kw"><a href="../reference/wallet_helpers.html">balance</a></span>(w2) ==<span class="st"> </span><span class="kw"><a href="../reference/wallet_helpers.html">balance</a></span>(w) *<span class="st"> </span><span class="dv">10</span>^<span class="dv">7</span></code></pre></div>
+<p>An <code>offset</code> can used passed to shift the starting point of the transaction record. The default offset is zero.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">w2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/wallet.html">wallet</a></span>(id, <span class="dt">offset =</span> <span class="dv">10</span>)
+<span class="kw"><a href="../reference/wallet_helpers.html">transactions</a></span>(w2)$tx_index[<span class="dv">1</span>] ==<span class="st"> </span><span class="kw"><a href="../reference/wallet_helpers.html">transactions</a></span>(w)$tx_index[<span class="dv">11</span>]</code></pre></div>
+</div>
+</div>
+<div id="plotting-data" class="section level1">
+<h1 class="hasAnchor">
+<a href="#plotting-data" class="anchor"></a>Plotting data</h1>
+<p>While packages like <code>ggplot2</code> can be leveraged to plot the data directly however you see fit, there are some stock plot functions available in <code>rockchain</code>.</p>
+<p>More content to be added…</p>
+</div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+        <div id="tocnav">
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
+      <ul class="nav nav-pills nav-stacked">
+<li>
+<a href="#ticker-and-marketcap-data">Ticker and marketcap data</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#the-coinmarketcap-com-ticker">The coinmarketcap.com ticker</a></li>
+      <li><a href="#total-global-market-cap">Total global market cap</a></li>
+      <li><a href="#blockchain-info-ticker">blockchain.info ticker</a></li>
+      <li><a href="#wrappers-for-ticker">Wrappers for <code>ticker</code></a></li>
+      <li><a href="#ticker-related-helper-functions">Ticker-related helper functions</a></li>
+      </ul>
+</li>
+      <li>
+<a href="#wallet-transaction-data">Wallet transaction data</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#wallet-structure-and-accessor-functions">Wallet structure and accessor functions</a></li>
+      <li><a href="#api-connection-issues">API connection issues</a></li>
+      <li><a href="#other-wallet-arguments">Other wallet arguments</a></li>
+      </ul>
+</li>
+      <li><a href="#plotting-data">Plotting data</a></li>
+      </ul>
+</div>
       </div>
 
 </div>
