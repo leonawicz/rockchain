@@ -41,9 +41,31 @@ wallet <- function(id, satoshi = FALSE, offset = 0, tx_max = 100, max_attempts =
   x
 }
 
+.antiddos <- function(x, sec = getOption("rockchain_antiddos", 10)){
+  wait <- 0
+  if(!is.null(rockchain_api_time[[x]])){
+    wait <- as.numeric(get(x, rockchain_api_time)) + sec - as.numeric(Sys.time())
+    if(wait > 0){
+      cat("Recent API call. Waiting for turn.", round(wait, 2), "seconds until next API call...\n")
+      Sys.sleep(wait)
+    } else {
+      wait <- 0
+    }
+  }
+  assign(x, Sys.time(), envir = rockchain_api_time)
+  return(wait)
+}
+
 .try_wallet <- function(url, id){
   tryCatch({
-    sprintf(url, id) %>% purrr::map(jsonlite::fromJSON)
+    purrr::map(sprintf(url, id), ~({
+      .antiddos("bci")
+      curl <- RCurl::getCurlHandle(useragent = paste("rockchain", packageVersion("rockchain")))
+      json <- rawToChar(RCurl::getURLContent(curl = curl, url = .x, binary = TRUE))
+      assign("bci", Sys.time(), envir = rockchain_api_time)
+      out <- jsonlite::fromJSON(json)
+    })
+    )
   }, error = function(e) { "Please wait for connection...\n" }) # nolint
 }
 
