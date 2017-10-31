@@ -38,7 +38,7 @@ test_that("wallet returns as expected", {
     x5 <- x[[6]]
   } else {
     id <- "115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn"
-    n <- 2
+    n <- 1
     x1 <- wallet(id, max_attempts = n)
     x2 <- wallet(id, satoshi = TRUE, max_attempts = n)
     x3 <- wallet(id, offset = 10, max_attempts = n)
