@@ -1,3 +1,21 @@
+# rockchain 0.3.0
+
+* Added integer option to `cap` and `ticker` to return the top n cryptocurrencies by market cap via the `coinmarketcap.com` API.
+* Added `coins` metadata data set and related helper functions for direct access to stored cryptocurrency IDs, names and symbols.
+* Added unit tests.
+* Updated documentation.
+
+# rockchain 0.2.0
+
+* Refactored `wallet` and related support functions.
+* Addressed issue with intermittent `blockchain.info` connectivity.
+* Updated documentation.
+
+# rockchain 0.1.0
+
+* Refactored `ticker` and add related functions.
+* Updated documentation.
+
 # rockchain 0.0.1
 
 * Added functions and documentation, including improvement to `wallet`.
