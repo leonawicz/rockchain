@@ -3,6 +3,7 @@ context("wallet_helpers")
 test_that("wallet helpers return as expected", {
   skip_on_cran()
   skip_on_appveyor()
+  skip_on_os("windows")
 
   if(identical(Sys.getenv("TRAVIS"), "true")){
     x <- rockchain::wlt[[1]]
@@ -27,6 +28,7 @@ test_that("wallet helpers return as expected", {
 test_that("wallet returns as expected", {
   skip_on_cran()
   skip_on_appveyor()
+  skip_on_os("windows")
 
   if(identical(Sys.getenv("TRAVIS"), "true")){
     x <- rockchain::wlt[2:7]
