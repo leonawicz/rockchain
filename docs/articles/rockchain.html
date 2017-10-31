@@ -133,10 +133,11 @@
     
 <div class="contents">
 <p>The <code>rockchain</code> package provides simple interfaces to <a href="https://coinmarketcap.com/">coinmarketcap.com</a> ticker and market cap data and <a href="https://blockchain.info/">blockchain.info</a> ticker and Bitcoin wallet data. The current package does not yet support additional blockchain APIs, but will in the future. For now, it offers cryptocurrency market data retrieval and Bitcoin wallet transaction data retrieval via the two currently available APIs.</p>
-<div id="ticker-and-marketcap-data" class="section level1">
-<h1 class="hasAnchor">
-<a href="#ticker-and-marketcap-data" class="anchor"></a>Ticker and marketcap data</h1>
+<div id="ticker-and-marketcap-data" class="section level2">
+<h2 class="hasAnchor">
+<a href="#ticker-and-marketcap-data" class="anchor"></a>Ticker and marketcap data</h2>
 <p>The default API for ticker and market cap data is the <code>coinmarketcap.com</code> API. The site provides up-to-date cryptocurrency prices for Bitcoin and over a thousand “altcoins” (non-Bitcoin cryptocurrencies). While Bitcoin enjoys a large percentage of the total global cryptocurrency market cap, a number of altcoins also have large market caps, at least by current cryptocurrency standards. These include altcoins such as Ethereum (ETH) and Litecoin (LTC). Many others do not. And many of these that also do not have much to offer in terms of known technological or practical value are sometimes referred to as shitcoins; Buyer beware.</p>
+</div>
 <div id="the-coinmarketcap-com-ticker" class="section level2">
 <h2 class="hasAnchor">
 <a href="#the-coinmarketcap-com-ticker" class="anchor"></a>The coinmarketcap.com ticker</h2>
@@ -170,10 +171,9 @@
 
 <span class="kw"><a href="../reference/bcinfo.html">bcinfo</a></span>(<span class="dt">fiat =</span> <span class="st">"GBP"</span>)</code></pre></div>
 </div>
-<div id="wrappers-for-ticker" class="section level2">
+<div id="wrappers-for-ticker-function" class="section level2">
 <h2 class="hasAnchor">
-<a href="#wrappers-for-ticker" class="anchor"></a>Wrappers for <code>ticker</code>
-</h2>
+<a href="#wrappers-for-ticker-function" class="anchor"></a>Wrappers for ticker function</h2>
 <p>Both of these functions wrap around <code>ticker</code> and exist to provide some basic separation of the different behavior of the two APIs and the kind of data they provide. If you use <code>ticker</code> directly, more attention should be paid to the different handling of <code>ticker</code> arguments depending on whether you specify the default <code>api = "coinmarketcap.com"</code> or the alternative <code>api = "blockchain.info"</code>. Using the default API, the two functions are essentially the same, and slightly different with the alternative. See the help documentation for details. The following pairs are equivalent calls.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/ticker.html">ticker</a></span>()
 <span class="kw"><a href="../reference/cap.html">cap</a></span>()
@@ -202,11 +202,11 @@
 <span class="kw"><a href="../reference/coin_helpers.html">coin_name</a></span>(<span class="kw">c</span>(<span class="st">"BTC"</span>, <span class="st">"eth"</span>))
 <span class="kw"><a href="../reference/coin_helpers.html">coin_symbol</a></span>(<span class="kw">c</span>(<span class="st">"bitcoin"</span>, <span class="st">"Bitcoin Cash"</span>))</code></pre></div>
 </div>
-</div>
-<div id="wallet-transaction-data" class="section level1">
-<h1 class="hasAnchor">
-<a href="#wallet-transaction-data" class="anchor"></a>Wallet transaction data</h1>
+<div id="wallet-transaction-data" class="section level2">
+<h2 class="hasAnchor">
+<a href="#wallet-transaction-data" class="anchor"></a>Wallet transaction data</h2>
 <p>The current version of <code>rockchain</code> supports Bitcoin wallet data retrieval from the Bitcoin blockchain using the <code>blockchain.info</code> API. Future package versions will add support for other blockchains and currencies.</p>
+</div>
 <div id="wallet-structure-and-accessor-functions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#wallet-structure-and-accessor-functions" class="anchor"></a>Wallet structure and accessor functions</h2>
@@ -231,7 +231,7 @@ w &lt;-<span class="st"> </span><span class="kw"><a href="../reference/wallet.ht
 <div id="api-connection-issues" class="section level2">
 <h2 class="hasAnchor">
 <a href="#api-connection-issues" class="anchor"></a>API connection issues</h2>
-<p>If you have trouble connecting, <code>wallet</code> will retry for you, up to <code>max_attempts</code> times. The default is ten attempts. It is not unusual to be rejected by the API if you make many calls. Notifications are printed to the console if <code>wallet</code> has to try more than once as well as if if fails <code>max_attempts</code> times.</p>
+<p>If you have trouble connecting, <code>wallet</code> will retry for you, up to <code>max_attempts</code> times. The default is ten attempts. It is not unusual to be rejected by the API if you make many calls. Notifications are printed to the console if <code>wallet</code> has to try more than once as well as if if fails <code>max_attempts</code> times. By default, <code>wallet</code> will not call the <code>blockchain.info</code> API more than once every ten seconds. You can adjust this with, e.g., <code>options(rockchain_antiddos = 1)</code>, but if you make many calls it may make sense to request your own API key from <code>blockchain.info</code>.</p>
 </div>
 <div id="other-wallet-arguments" class="section level2">
 <h2 class="hasAnchor">
@@ -245,10 +245,9 @@ w2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/wallet.h
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">w2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/wallet.html">wallet</a></span>(id, <span class="dt">offset =</span> <span class="dv">10</span>)
 <span class="kw"><a href="../reference/wallet_helpers.html">transactions</a></span>(w2)$tx_index[<span class="dv">1</span>] ==<span class="st"> </span><span class="kw"><a href="../reference/wallet_helpers.html">transactions</a></span>(w)$tx_index[<span class="dv">11</span>]</code></pre></div>
 </div>
-</div>
-<div id="plotting-data" class="section level1">
-<h1 class="hasAnchor">
-<a href="#plotting-data" class="anchor"></a>Plotting data</h1>
+<div id="plotting-data" class="section level2">
+<h2 class="hasAnchor">
+<a href="#plotting-data" class="anchor"></a>Plotting data</h2>
 <p>While packages like <code>ggplot2</code> can be leveraged to plot the data directly however you see fit, there are some stock plot functions available in <code>rockchain</code>.</p>
 <p>More content to be added…</p>
 </div>
@@ -260,22 +259,16 @@ w2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/wallet.h
       <h2 class="hasAnchor">
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-<li>
-<a href="#ticker-and-marketcap-data">Ticker and marketcap data</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#the-coinmarketcap-com-ticker">The coinmarketcap.com ticker</a></li>
+<li><a href="#ticker-and-marketcap-data">Ticker and marketcap data</a></li>
+      <li><a href="#the-coinmarketcap-com-ticker">The coinmarketcap.com ticker</a></li>
       <li><a href="#total-global-market-cap">Total global market cap</a></li>
       <li><a href="#blockchain-info-ticker">blockchain.info ticker</a></li>
-      <li><a href="#wrappers-for-ticker">Wrappers for <code>ticker</code></a></li>
+      <li><a href="#wrappers-for-ticker-function">Wrappers for ticker function</a></li>
       <li><a href="#ticker-related-helper-functions">Ticker-related helper functions</a></li>
-      </ul>
-</li>
-      <li>
-<a href="#wallet-transaction-data">Wallet transaction data</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#wallet-structure-and-accessor-functions">Wallet structure and accessor functions</a></li>
+      <li><a href="#wallet-transaction-data">Wallet transaction data</a></li>
+      <li><a href="#wallet-structure-and-accessor-functions">Wallet structure and accessor functions</a></li>
       <li><a href="#api-connection-issues">API connection issues</a></li>
       <li><a href="#other-wallet-arguments">Other wallet arguments</a></li>
-      </ul>
-</li>
       <li><a href="#plotting-data">Plotting data</a></li>
       </ul>
 </div>
