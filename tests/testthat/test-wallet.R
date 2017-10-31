@@ -14,12 +14,12 @@ test_that("wallet helpers return as expected", {
 
 test_that("wallet returns as expected", {
   id <- "115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn"
-  x1 <- wallet(id)
-  x2 <- wallet(id, satoshi = TRUE)
-  x3 <- wallet(id, offset = 10)
-  x4a <- wallet(id, offset = 10, tx_max = NULL)
-  x4b <- wallet(id, offset = 10, tx_max = 1000)
-  x5 <- wallet(id, offset = 100)
+  x1 <- wallet(id, max_attempts = 100)
+  x2 <- wallet(id, satoshi = TRUE, max_attempts = 100)
+  x3 <- wallet(id, offset = 10, max_attempts = 100)
+  x4a <- wallet(id, offset = 10, tx_max = NULL, max_attempts = 100)
+  x4b <- wallet(id, offset = 10, tx_max = 1000, max_attempts = 100)
+  x5 <- wallet(id, offset = 100, max_attempts = 100)
 
   purrr::walk(list(x1, x2, x3, x4a, x4b), ~expect_is(.x, c("wallet", "list")))
   expect_equal(10e7 * x1[[1]]$total_received, x2[[1]]$total_received)
