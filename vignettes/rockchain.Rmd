@@ -50,6 +50,7 @@ cap(crypto = c("ETH", "LTC"))
 The results always include USD and Bitcoin price, USD market cap and USD 24-hour trading volume by default. Using `convert` to obtain price, market cap and volume in other currencies adds new columns onto the end of the table. `convert` may be a vector. It may also include other cryptocurrency symbols, not just fiat currencies.
 
 ```{r cap4}
+library(dplyr)
 cap(crypto = "ETH", convert = c("EUR", "GBP")) %>% select(15:20)
 
 cap(crypto = "BTC", convert = "ETH") %>% select(15:17)
@@ -135,8 +136,6 @@ format(balance(w), scientific = FALSE) # Bitcoin is expensive.
 Here are all of the available getter functions.
 
 ```{r wallet2}
-id <- c("115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn", "1KennyH9grzif79WbaQDHpqgTnm25j4rRj")
-w <- wallet(id) # a wallet list with two addresses
 hash(w)
 address(w)
 received(w) # total Bitcoin received
