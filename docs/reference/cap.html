@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get the current value of a cryptocurrency — coin_value â€¢ rockchain</title>
+<title>Global cryptocurrency market cap — cap â€¢ rockchain</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -149,25 +149,25 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get the current value of a cryptocurrency</h1>
+    <h1>Global cryptocurrency market cap</h1>
     </div>
 
     
-    <p>Get the current value of cryptocurrency in terms of fiat currencies.</p>
+    <p>Obtain global cryptocurrency market cap data from <code>coinmarketcap.com</code>.</p>
     
 
-    <pre class="usage"><span class='fu'>coin_value</span>(<span class='kw'>crypto</span> <span class='kw'>=</span> <span class='st'>"BTC"</span>, <span class='no'>fiat</span>)</pre>
+    <pre class="usage"><span class='fu'>cap</span>(<span class='kw'>crypto</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>convert</span> <span class='kw'>=</span> <span class='st'>"USD"</span>, <span class='kw'>limit</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>crypto</th>
-      <td><p>character, cryptocurrency trading symbol, e.g. BTC.</p></td>
+      <td><p>character, integer or <code>NULL</code>, may be a vector. See details.</p></td>
     </tr>
     <tr>
-      <th>fiat</th>
-      <td><p>character, fiat currency trading symbol, e.g., USD.</p></td>
+      <th>convert</th>
+      <td><p>character, may be a vector. Currencies to convert <code>crypto</code> value. These may be fiat or cryptocurrencies.</p></td>
     </tr>
     </table>
     
@@ -177,26 +177,22 @@
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The current implementation of this function only accepts codecrypto = "BTC".
-<code>crypto</code> and <code>fiat</code> are not case sensitive.
-<code>fiat</code> may be a vector. If missing, all available fiat currency values are returned.</p>
+    <p>Return all tracked cryptocurrencies if <code>crypto = NULL</code>. Return global aggregate market cap if <code>crypto = "global"</code>.
+If an integer, return the top <code>crypto</code> cryptocurrencies by market cap.
+Otherwise <code>crypto</code> should be a vector of cryptocurrency ticker symbols, e.g., BTC.
+This function is a partial wrapper around <code><a href='ticker.html'>ticker</a></code> (when <code>crypto = "global"</code>).</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <p><code><a href='ticker.html'>ticker</a></code></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>coin_value</span>()</div><div class='output co'>#&gt; # A tibble: 22 x 5
-#&gt;    currency       last        buy       sell symbol
-#&gt;       &lt;chr&gt;      &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;  &lt;chr&gt;
-#&gt;  1      USD    5651.37    5651.84    5650.89      $
-#&gt;  2      AUD    7176.13    7176.73    7175.52      $
-#&gt;  3      BRL   17941.97   17943.48   17940.46     R$
-#&gt;  4      CAD    7048.64    7049.23    7048.04      $
-#&gt;  5      CHF    5512.74    5513.21    5512.28    CHF
-#&gt;  6      CLP 3533798.53 3534095.55 3533501.52      $
-#&gt;  7      CNY   37459.04   37462.19   37455.89      ¥
-#&gt;  8      DKK   35543.21   35546.20   35540.23     kr
-#&gt;  9      EUR    4789.63    4791.06    4788.19      <U+0080>
-#&gt; 10      GBP    4293.74    4294.10    4293.38      £
-#&gt; # ... with 12 more rows</div></pre>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'>cap</span>()
+<span class='fu'>cap</span>(<span class='kw'>crypto</span> <span class='kw'>=</span> <span class='st'>"global"</span>)
+<span class='fu'>cap</span>(<span class='kw'>crypto</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"ETH"</span>, <span class='st'>"LTC"</span>), <span class='kw'>convert</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"EUR"</span>, <span class='st'>"GBP"</span>, <span class='st'>"BTC"</span>))
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -206,6 +202,8 @@
       <li><a href="#value">Value</a></li>
 
       <li><a href="#details">Details</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>

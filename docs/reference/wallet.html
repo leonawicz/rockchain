@@ -156,7 +156,7 @@
     <p>Get wallet info from blockchain.info.</p>
     
 
-    <pre class="usage"><span class='fu'>wallet</span>(<span class='no'>id</span>, <span class='kw'>satoshi</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>offset</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>tx_max</span> <span class='kw'>=</span> <span class='fl'>100</span>)</pre>
+    <pre class="usage"><span class='fu'>wallet</span>(<span class='no'>id</span>, <span class='kw'>satoshi</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>offset</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>tx_max</span> <span class='kw'>=</span> <span class='fl'>100</span>, <span class='kw'>max_attempts</span> <span class='kw'>=</span> <span class='fl'>10</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -167,7 +167,7 @@
     </tr>
     <tr>
       <th>satoshi</th>
-      <td><p>logical, if set to <code>TRUE</code>, retain Satoshi units from blockchain.info. Otherwise all values are in bitcoin (<code>Satoshis / 10e7</code>).</p></td>
+      <td><p>logical, if set to <code>TRUE</code>, retain Satoshi units from blockchain.info. Otherwise all values are in Bitcoin (<code>Satoshis / 10e7</code>).</p></td>
     </tr>
     <tr>
       <th>offset</th>
@@ -177,6 +177,10 @@
       <th>tx_max</th>
       <td><p>integer, maximum number of transactions to return. Defaults to 100. <code>NULL</code> will attempt to retrieve all transactions.</p></td>
     </tr>
+    <tr>
+      <th>max_attempts</th>
+      <td><p>integer, maximum number of recursive attempts to connect to <code>blockchain.info</code> in case of connection error.</p></td>
+    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
@@ -185,7 +189,11 @@
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>The current implementation of this function grabs information for specified wallets only from <a href='blockchain.info'>blockchain.info</a>.</p>
+    <p>The current implementation of this function grabs information for specified wallets only from <a href='blockchain.info'>blockchain.info</a>.
+Note that it is possible to get a connection error if you make too many API calls too quickly or just get unlucky with <code>blockchain.info</code> accessibility.
+<code>wallet</code> will attempt connection recursively up to <code>max_attempts</code> times. The default is ten attempts.
+If the first attempt fails, a notification will print to the console.
+If not successful after <code>max_attempts</code> attempts, a failure notification will be printed.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • rockchain</title>
+<title>Valid fiat ticker symbols � fiat_symbols • rockchain</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -49,7 +49,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
@@ -147,136 +147,66 @@
       </header>
 
       <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>
-        Reference
-        <small>version&nbsp;0.3.0</small>
-      </h1>
+    <h1>Valid fiat ticker symbols</h1>
     </div>
 
-    <div class="contents">
-      <table class="ref-index">
+    
+    <p>Get valid fiat currency ticker symbols for available ticker/market cap APIs.</p>
+    
 
-      <colgroup>
-        <col class="alias" />
-        <col class="title" />
-      </colgroup>
+    <pre class="usage"><span class='fu'>fiat_symbols</span>(<span class='kw'>api</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>api</th>
+      <td><p>character or <code>NULL</code>, the API. See <code><a href='apis.html'>apis</a></code>.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-      <tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-package" class="hasAnchor"><a href="#section-package" class="anchor"></a>Package</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="rockchain.html">rockchain</a></code> </p>
-          </td>
-          <td><p>rockchain: a blockchain package for R.</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-coin-metadata-and-helpers" class="hasAnchor"><a href="#section-coin-metadata-and-helpers" class="anchor"></a>Coin metadata and helpers</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="coins.html">coins</a></code> </p>
-          </td>
-          <td><p>Avaliable cryptocurrencies.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="coin_helpers.html">coin_id</a></code> <code><a href="coin_helpers.html">coin_name</a></code> <code><a href="coin_helpers.html">coin_symbol</a></code> </p>
-          </td>
-          <td><p>Coin helper functions</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-current-ticker-market-cap" class="hasAnchor"><a href="#section-current-ticker-market-cap" class="anchor"></a>Current ticker/market cap</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="cap.html">cap</a></code> </p>
-          </td>
-          <td><p>Global cryptocurrency market cap</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="bcinfo.html">bcinfo</a></code> </p>
-          </td>
-          <td><p>Bitcoin ticker data from blockchain.info</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ticker.html">ticker</a></code> </p>
-          </td>
-          <td><p>Cryptocurrency ticker/market cap data</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-wallet-transaction-data" class="hasAnchor"><a href="#section-wallet-transaction-data" class="anchor"></a>Wallet transaction data</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="wallet.html">wallet</a></code> </p>
-          </td>
-          <td><p>Get wallet info</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="wallet_helpers.html">hash</a></code> <code><a href="wallet_helpers.html">address</a></code> <code><a href="wallet_helpers.html">received</a></code> <code><a href="wallet_helpers.html">sent</a></code> <code><a href="wallet_helpers.html">balance</a></code> <code><a href="wallet_helpers.html">txn</a></code> <code><a href="wallet_helpers.html">transactions</a></code> </p>
-          </td>
-          <td><p>Wallet helper functions</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-other-helper-functions" class="hasAnchor"><a href="#section-other-helper-functions" class="anchor"></a>Other helper functions</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="apis.html">apis</a></code> </p>
-          </td>
-          <td><p>Available APIs</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="fiat_symbols.html">fiat_symbols</a></code> </p>
-          </td>
-          <td><p>Valid fiat ticker symbols</p></td>
-        </tr>
-      </tbody>
-      </table>
-    </div>
+    <p>a data frame if <code>api = NULL</code>, otherwise a vector.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <p><code><a href='apis.html'>apis</a></code></p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>fiat_symbols</span>()</div><div class='output co'>#&gt; # A tibble: 33 x 3
+#&gt;    currency coinmarketcap.com blockchain.info
+#&gt;       &lt;chr&gt;             &lt;lgl&gt;           &lt;lgl&gt;
+#&gt;  1      AUD              TRUE            TRUE
+#&gt;  2      BRL              TRUE            TRUE
+#&gt;  3      CAD              TRUE            TRUE
+#&gt;  4      CHF              TRUE            TRUE
+#&gt;  5      CLP              TRUE            TRUE
+#&gt;  6      CNY              TRUE            TRUE
+#&gt;  7      CZK              TRUE           FALSE
+#&gt;  8      DKK              TRUE            TRUE
+#&gt;  9      EUR              TRUE            TRUE
+#&gt; 10      GBP              TRUE            TRUE
+#&gt; # ... with 23 more rows</div><div class='input'><span class='fu'>fiat_symbols</span>(<span class='kw'>api</span> <span class='kw'>=</span> <span class='st'>"coinmarketcap.com"</span>)</div><div class='output co'>#&gt;  [1] "AUD" "BRL" "CAD" "CHF" "CLP" "CNY" "CZK" "DKK" "EUR" "GBP" "HKD" "HUF"
+#&gt; [13] "IDR" "ILS" "INR" "JPY" "KRW" "MXN" "MYR" "NOK" "NZD" "PHP" "PKR" "PLN"
+#&gt; [25] "RUB" "SEK" "SGD" "THB" "TRY" "TWD" "ZAR" "USD"</div><div class='input'><span class='fu'>fiat_symbols</span>(<span class='kw'>api</span> <span class='kw'>=</span> <span class='st'>"blockchain.info"</span>)</div><div class='output co'>#&gt;  [1] "USD" "AUD" "BRL" "CAD" "CHF" "CLP" "CNY" "DKK" "EUR" "GBP" "HKD" "INR"
+#&gt; [13] "ISK" "JPY" "KRW" "NZD" "PLN" "RUB" "SEK" "SGD" "THB" "TWD"</div></pre>
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-package">Package</a></li>
-      <li><a href="#section-coin-metadata-and-helpers">Coin metadata and helpers</a></li>
-      <li><a href="#section-current-ticker-market-cap">Current ticker/market cap</a></li>
-      <li><a href="#section-wallet-transaction-data">Wallet transaction data</a></li>
-      <li><a href="#section-other-helper-functions">Other helper functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 

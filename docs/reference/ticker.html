@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • rockchain</title>
+<title>Cryptocurrency ticker/market cap data � ticker • rockchain</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -49,7 +49,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
   <div class="container">
@@ -147,136 +147,76 @@
       </header>
 
       <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>
-        Reference
-        <small>version&nbsp;0.3.0</small>
-      </h1>
+    <h1>Cryptocurrency ticker/market cap data</h1>
     </div>
 
-    <div class="contents">
-      <table class="ref-index">
+    
+    <p>Get cryptocurrency ticker/market cap data from a specified API.</p>
+    
 
-      <colgroup>
-        <col class="alias" />
-        <col class="title" />
-      </colgroup>
+    <pre class="usage"><span class='fu'>ticker</span>(<span class='kw'>crypto</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>convert</span> <span class='kw'>=</span> <span class='st'>"USD"</span>, <span class='kw'>api</span> <span class='kw'>=</span> <span class='st'>"coinmarketcap.com"</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>crypto</th>
+      <td><p>character, integer or <code>NULL</code>. See details.</p></td>
+    </tr>
+    <tr>
+      <th>convert</th>
+      <td><p>character or <code>NULL</code>, conversion currency trading symbol. See details.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-      <tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-package" class="hasAnchor"><a href="#section-package" class="anchor"></a>Package</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="rockchain.html">rockchain</a></code> </p>
-          </td>
-          <td><p>rockchain: a blockchain package for R.</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-coin-metadata-and-helpers" class="hasAnchor"><a href="#section-coin-metadata-and-helpers" class="anchor"></a>Coin metadata and helpers</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="coins.html">coins</a></code> </p>
-          </td>
-          <td><p>Avaliable cryptocurrencies.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="coin_helpers.html">coin_id</a></code> <code><a href="coin_helpers.html">coin_name</a></code> <code><a href="coin_helpers.html">coin_symbol</a></code> </p>
-          </td>
-          <td><p>Coin helper functions</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-current-ticker-market-cap" class="hasAnchor"><a href="#section-current-ticker-market-cap" class="anchor"></a>Current ticker/market cap</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="cap.html">cap</a></code> </p>
-          </td>
-          <td><p>Global cryptocurrency market cap</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="bcinfo.html">bcinfo</a></code> </p>
-          </td>
-          <td><p>Bitcoin ticker data from blockchain.info</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ticker.html">ticker</a></code> </p>
-          </td>
-          <td><p>Cryptocurrency ticker/market cap data</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-wallet-transaction-data" class="hasAnchor"><a href="#section-wallet-transaction-data" class="anchor"></a>Wallet transaction data</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="wallet.html">wallet</a></code> </p>
-          </td>
-          <td><p>Get wallet info</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="wallet_helpers.html">hash</a></code> <code><a href="wallet_helpers.html">address</a></code> <code><a href="wallet_helpers.html">received</a></code> <code><a href="wallet_helpers.html">sent</a></code> <code><a href="wallet_helpers.html">balance</a></code> <code><a href="wallet_helpers.html">txn</a></code> <code><a href="wallet_helpers.html">transactions</a></code> </p>
-          </td>
-          <td><p>Wallet helper functions</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-other-helper-functions" class="hasAnchor"><a href="#section-other-helper-functions" class="anchor"></a>Other helper functions</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="apis.html">apis</a></code> </p>
-          </td>
-          <td><p>Available APIs</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="fiat_symbols.html">fiat_symbols</a></code> </p>
-          </td>
-          <td><p>Valid fiat ticker symbols</p></td>
-        </tr>
-      </tbody>
-      </table>
-    </div>
+    <p>a data frame. Available columns depend on the selected API.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The current implementation of this function offers two common APIs: <code>coinmarketcap.com</code> and <code>blockchain.info</code>.
+<code>coinmarketcap.com</code> returns ticker/market cap information for many different cryptocurrencies and their value
+can be expressed in any of several fiat currencies (e.g., USD) or other cryptocurrencies (e.g. BTC).
+<code>blockchain.info</code> is specific to Bitcoin. It only returns Bitcoin information, which can be expressed in any of several fiat currencies.
+    <code>crypto</code> and <code>convert</code> are not case sensitive to cryptocurrency ticker symbols. Both arguments are handled somewhat different for each API.
+For simplicity, there are available wrapper functions,
+<code><a href='cap.html'>cap</a></code> and <code><a href='bcinfo.html'>bcinfo</a></code>, that help separate the APIs and what information you intend to obtain from each.
+    <code>crypto</code> and <code>convert</code> may be vectors, though of course for <code>blockchain.info</code>, <code>crypto</code> is simply ignored.
+For <code>coinmarketcap.com</code>, the default <code>crypto = NULL</code> will return all available cryptocurrencies tracked by <code>coinmarketcap.com</code>.
+If an integer, the top <code>crypto</code> cryptocurrencies by market cap are returned by the <code>coinmarketcap.com</code> API.
+    <code>convert</code> may be <code>NULL</code>. This is handled differently by each API. For <code>coinmarketcap.com</code>, USD is assumed in order to limit the number of API calls.
+For <code>blockchain.info</code> all available fiat currency-Bitcoin ticker pairs are returned.</p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <p><code><a href='cap.html'>cap</a></code>, <code><a href='bcinfo.html'>bcinfo</a></code></p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'>ticker</span>()
+<span class='fu'>ticker</span>(<span class='kw'>crypto</span> <span class='kw'>=</span> <span class='fl'>5</span>)
+<span class='fu'>ticker</span>(<span class='kw'>crypto</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"ETH"</span>, <span class='st'>"LTC"</span>), <span class='kw'>convert</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"EUR"</span>, <span class='st'>"GBP"</span>, <span class='st'>"BTC"</span>))
+<span class='fu'>ticker</span>(<span class='kw'>api</span> <span class='kw'>=</span> <span class='st'>"blockchain.info"</span>)
+<span class='co'># }</span></pre>
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-package">Package</a></li>
-      <li><a href="#section-coin-metadata-and-helpers">Coin metadata and helpers</a></li>
-      <li><a href="#section-current-ticker-market-cap">Current ticker/market cap</a></li>
-      <li><a href="#section-wallet-transaction-data">Wallet transaction data</a></li>
-      <li><a href="#section-other-helper-functions">Other helper functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#see-also">See also</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 
