@@ -23,6 +23,7 @@ wallet <- function(id, satoshi = FALSE, offset = 0, tx_max = 100, max_attempts =
   url <- "https://blockchain.info/rawaddr/%s?offset="
   url1 <- paste0(url, offset)
   x <- .get_wallet(id, url1, satoshi, max_attempts)
+  if(!is.list(x)) return(invisible())
   if(any(purrr::map_lgl(x, ~offset > .x$n_tx - 1)))
     stop("Offset cannot be greater than the number of transactions.")
   incomplete <- purrr::map_lgl(x, ~.x$n_tx > offset + 50)
@@ -33,7 +34,8 @@ wallet <- function(id, satoshi = FALSE, offset = 0, tx_max = 100, max_attempts =
         paste0(url, if(.y) seq(offset, offset + n - 1, by = 50) else 0)
       })
     )
-    x <- .combine_wallet(id, url2, satoshi)
+    x <- .combine_wallet(id, url2, satoshi, max_attempts)
+    if(!is.list(x)) return(invisible())
   }
   class(x) <- c("wallet", "list")
   x
