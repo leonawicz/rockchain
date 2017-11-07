@@ -3,16 +3,11 @@ context("wallet_helpers")
 test_that("wallet helpers return as expected", {
   skip_on_cran()
   skip_on_appveyor()
-  skip_on_os("windows")
 
-  if(identical(Sys.getenv("TRAVIS"), "true")){
+  x <- wallet("1KennyH9grzif79WbaQDHpqgTnm25j4rRj")
+  if(nrow(x[[1]]$txs) == 0){
+    cat("blockchain.info wallet API inaccessible. Falling back on local data.\n")
     x <- rockchain::wlt[[1]]
-  } else {
-    x <- wallet("1KennyH9grzif79WbaQDHpqgTnm25j4rRj")
-    if(nrow(x[[1]]$txs) == 0){
-      cat("blockchain.info wallet API inaccessible. Falling back on local data.\n")
-      x <- rockchain::wlt[[1]]
-    }
   }
 
   expect_error(hash(list()), "Input is not a `wallet` list.")
@@ -28,9 +23,17 @@ test_that("wallet helpers return as expected", {
 test_that("wallet returns as expected", {
   skip_on_cran()
   skip_on_appveyor()
-  skip_on_os("windows")
 
-  if(identical(Sys.getenv("TRAVIS"), "true")){
+  id <- "115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn"
+  n <- 1
+  x1 <- wallet(id, max_attempts = n)
+  x2 <- wallet(id, satoshi = TRUE, max_attempts = n)
+  x3 <- wallet(id, offset = 10, max_attempts = n)
+  x4a <- wallet(id, offset = 10, tx_max = NULL, max_attempts = n)
+  x4b <- wallet(id, offset = 10, tx_max = 1000, max_attempts = n)
+  x5 <- wallet(id, offset = 100, max_attempts = n)
+  if(any(purrr::map_int(list(x1, x2, x3, x4a, x4b, x5), ~nrow(.x[[1]]$txs) == 0))){
+    cat("blockchain.info wallet API inaccessible. Falling back on local data.\n")
     x <- rockchain::wlt[2:7]
     x1 <- x[[1]]
     x2 <- x[[2]]
@@ -38,25 +41,6 @@ test_that("wallet returns as expected", {
     x4a <- x[[4]]
     x4b <- x[[5]]
     x5 <- x[[6]]
-  } else {
-    id <- "115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn"
-    n <- 1
-    x1 <- wallet(id, max_attempts = n)
-    x2 <- wallet(id, satoshi = TRUE, max_attempts = n)
-    x3 <- wallet(id, offset = 10, max_attempts = n)
-    x4a <- wallet(id, offset = 10, tx_max = NULL, max_attempts = n)
-    x4b <- wallet(id, offset = 10, tx_max = 1000, max_attempts = n)
-    x5 <- wallet(id, offset = 100, max_attempts = n)
-    if(any(purrr::map_int(list(x1, x2, x3, x4a, x4b, x5), ~nrow(.x[[1]]$txs) == 0))){
-      cat("blockchain.info wallet API inaccessible. Falling back on local data.\n")
-      x <- rockchain::wlt[2:7]
-      x1 <- x[[1]]
-      x2 <- x[[2]]
-      x3 <- x[[3]]
-      x4a <- x[[4]]
-      x4b <- x[[5]]
-      x5 <- x[[6]]
-    }
   }
 
   purrr::walk(list(x1, x2, x3, x4a, x4b), ~expect_is(.x, c("wallet", "list")))
