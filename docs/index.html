@@ -138,33 +138,34 @@
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can install rockchain from github with:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># install.packages('devtools')</span>
-devtools::<span class="kw">install_github</span>(<span class="st">"leonawicz/rockchain"</span>)</code></pre></div>
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"leonawicz/rockchain"</span>)</code></pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rockchain)
 <span class="kw"><a href="reference/cap.html">cap</a></span>()
-<span class="co">#&gt; # A tibble: 1,234 x 14</span>
-<span class="co">#&gt;              id         name symbol  rank price_usd  price_btc</span>
-<span class="co">#&gt;  *        &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;</span>
-<span class="co">#&gt;  1      bitcoin      Bitcoin    BTC     1   6134.97        1.0</span>
-<span class="co">#&gt;  2     ethereum     Ethereum    ETH     2   307.571  0.0500859</span>
-<span class="co">#&gt;  3       ripple       Ripple    XRP     3  0.202436 0.00003297</span>
-<span class="co">#&gt;  4 bitcoin-cash Bitcoin Cash    BCH     4   451.641  0.0735468</span>
-<span class="co">#&gt;  5     litecoin     Litecoin    LTC     5   56.4311 0.00918943</span>
-<span class="co">#&gt;  6         dash         Dash   DASH     6   286.051  0.0465815</span>
-<span class="co">#&gt;  7          neo          NEO    NEO     7   28.8074  0.0046911</span>
-<span class="co">#&gt;  8          nem          NEM    XEM     8  0.199491 0.00003249</span>
-<span class="co">#&gt;  9   bitconnect   BitConnect    BCC     9   227.886  0.0371097</span>
-<span class="co">#&gt; 10       monero       Monero    XMR    10   88.8047  0.0144613</span>
-<span class="co">#&gt; # ... with 1,224 more rows, and 8 more variables: `24h_volume_usd` &lt;chr&gt;,</span>
+<span class="co">#&gt; # A tibble: 1,265 x 15</span>
+<span class="co">#&gt;                  id             name symbol  rank price_usd  price_btc</span>
+<span class="co">#&gt;  *            &lt;chr&gt;            &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;</span>
+<span class="co">#&gt;  1          bitcoin          Bitcoin    BTC     1   7122.48        1.0</span>
+<span class="co">#&gt;  2         ethereum         Ethereum    ETH     2   298.668  0.0422735</span>
+<span class="co">#&gt;  3     bitcoin-cash     Bitcoin Cash    BCH     3   616.899  0.0873158</span>
+<span class="co">#&gt;  4           ripple           Ripple    XRP     4  0.205253 0.00002905</span>
+<span class="co">#&gt;  5         litecoin         Litecoin    LTC     5   55.2786 0.00782413</span>
+<span class="co">#&gt;  6             dash             Dash   DASH     6   285.829  0.0404562</span>
+<span class="co">#&gt;  7              neo              NEO    NEO     7   26.0908 0.00369289</span>
+<span class="co">#&gt;  8              nem              NEM    XEM     8  0.185554 0.00002626</span>
+<span class="co">#&gt;  9           monero           Monero    XMR     9   100.028   0.014158</span>
+<span class="co">#&gt; 10 ethereum-classic Ethereum Classic    ETC    10   14.6268 0.00207027</span>
+<span class="co">#&gt; # ... with 1,255 more rows, and 9 more variables: `24h_volume_usd` &lt;chr&gt;,</span>
 <span class="co">#&gt; #   market_cap_usd &lt;chr&gt;, available_supply &lt;chr&gt;, total_supply &lt;chr&gt;,</span>
-<span class="co">#&gt; #   percent_change_1h &lt;chr&gt;, percent_change_24h &lt;chr&gt;,</span>
+<span class="co">#&gt; #   max_supply &lt;chr&gt;, percent_change_1h &lt;chr&gt;, percent_change_24h &lt;chr&gt;,</span>
 <span class="co">#&gt; #   percent_change_7d &lt;chr&gt;, last_updated &lt;chr&gt;</span>
 
 w &lt;-<span class="st"> </span><span class="kw"><a href="reference/wallet.html">wallet</a></span>(<span class="st">"115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn"</span>)
-<span class="co">#&gt; Please wait for connection...</span>
+<span class="co">#&gt; Recent API call. Waiting for turn. 9.76 seconds until next API call...</span>
+<span class="co">#&gt; Recent API call. Waiting for turn. 9.95 seconds until next API call...</span>
 <span class="kw"><a href="reference/wallet_helpers.html">balance</a></span>(w)
 <span class="co">#&gt; [1] 0.09</span></code></pre></div>
 <p>For more details see the <a href="https://leonawicz.github.io/rockchain/articles/rockchain.html">vignette</a>.</p>
