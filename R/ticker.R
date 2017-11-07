@@ -117,7 +117,7 @@ ticker <- function(crypto = NULL, convert = "USD", api = "coinmarketcap.com"){
     }
   }
   if(length(crypto) > 1) x <- dplyr::filter(x, .data[["symbol"]] %in% crypto)
-  tibble::as_data_frame(x)
+  tibble::as_data_frame(x) %>% dplyr::mutate_at(4, factor) %>% dplyr::mutate_at(5:15, as.numeric)
 }
 
 .ticker_bcinfo <- function(convert){
