@@ -134,7 +134,7 @@ ticker <- function(crypto = NULL, convert = "USD", api = "coinmarketcap.com"){
     if(is.null(crypto) || is.character(crypto)){
       cmc <- "https://api.coinmarketcap.com/v1/ticker/?convert="
     } else if(is.numeric(crypto)){
-      cmc <- paste0("https://api.coinmarketcap.com/v1/ticker/?limit=", as.integer(crypto), "&?convert=")
+      cmc <- paste0("https://api.coinmarketcap.com/v1/ticker/?limit=", as.integer(crypto), "&convert=")
     }
     if(is.character(crypto) && length(crypto) == 1)
       cmc <- gsub("/ticker/", paste0("/ticker/", coin_id(crypto), "/"), cmc) # nolint
