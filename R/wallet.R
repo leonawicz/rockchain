@@ -86,7 +86,7 @@ wallet <- function(id, satoshi = FALSE, offset = 0, tx_max = 100, max_attempts =
     x <- .x
     x$txs <- tibble::as_data_frame(x$txs) %>% dplyr::arrange(desc(.data[["tx_index"]]))
     if(!satoshi){
-      y <- 10e7
+      y <- 1e8
       x$total_received <- x$total_received / y
       x$total_sent<- x$total_sent / y
       x$final_balance <- x$final_balance / y

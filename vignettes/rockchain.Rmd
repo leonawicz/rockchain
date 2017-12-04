@@ -164,7 +164,7 @@ But since many APIs and websites report value in Bitcoin, `rockchain` does the s
 id <- "115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn"
 w <- wallet(id)
 w2 <- wallet(id, satoshi = TRUE)
-balance(w2) == balance(w) * 10^7
+balance(w2) == balance(w) * 1e8
 ```
 
 An `offset` can used passed to shift the starting point of the transaction record. The default offset is zero.
