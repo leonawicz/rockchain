@@ -130,7 +130,6 @@ Several convenient accessors are provided. These are simple getter functions. Th
 id <- c("115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn", "1KennyH9grzif79WbaQDHpqgTnm25j4rRj")
 w <- wallet(id) # a wallet list with two addresses
 balance(w) # check the balance, vectorized
-format(balance(w), scientific = FALSE) # Bitcoin is expensive.
 ```
 
 Here are all of the available getter functions.
