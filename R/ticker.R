@@ -132,7 +132,7 @@ ticker <- function(crypto = NULL, convert = "USD", api = "coinmarketcap.com"){
 .ticker_url <- function(x, crypto, convert){
   if(x == "coinmarketcap.com"){
     if(is.null(crypto) || is.character(crypto)){
-      cmc <- "https://api.coinmarketcap.com/v1/ticker/?convert="
+      cmc <- "https://api.coinmarketcap.com/v1/ticker/?limit=0&convert="
     } else if(is.numeric(crypto)){
       cmc <- paste0("https://api.coinmarketcap.com/v1/ticker/?limit=", as.integer(crypto), "&convert=")
     }
