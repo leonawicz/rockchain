@@ -104,7 +104,7 @@ length(fiat_symbols(api = "coinmarketcap.com"))
 length(fiat_symbols(api = "blockchain.info"))
 ```
 
-Previously, `cap()` returned well over 1,000 cryptocurrencies. `rockchain` includes a data set, `coins`, that provides the cryptocurrency names, ticker symbols, and IDs (as used by the `coinmarketcap.com` API) for all of these altcoins, at least as of the time of package publication. While an updated table can always be obtained just using the first three columns of `cap()`, the `coins` data set is a convenient way to access much of this coin metadata without making an API call. 
+Previously, `cap()` returned well over 1,000 cryptocurrencies. `rockchain` includes a data set, `coins`, that provides the cryptocurrency names, ticker symbols, and IDs (as used by the `coinmarketcap.com` API) for all of these altcoins, at least as of the time of package publication (1,398). While an updated table can always be obtained just using the first three columns of `cap()`, the `coins` data set is a convenient way to access much of this coin metadata without making an API call. 
 
 There are also a few related convenient lookup functions for finding IDs, names or symbols from either of the other two.
 
