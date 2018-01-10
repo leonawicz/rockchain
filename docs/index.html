@@ -145,29 +145,28 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <a href="#example" class="anchor"></a>Example</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rockchain)
 <span class="kw"><a href="reference/cap.html">cap</a></span>()
-<span class="co">#&gt; # A tibble: 100 x 15</span>
-<span class="co">#&gt;              id         name symbol   rank    price_usd  price_btc</span>
-<span class="co">#&gt;           &lt;chr&gt;        &lt;chr&gt;  &lt;chr&gt; &lt;fctr&gt;        &lt;dbl&gt;      &lt;dbl&gt;</span>
-<span class="co">#&gt;  1      bitcoin      Bitcoin    BTC      1 11455.300000 1.00000000</span>
-<span class="co">#&gt;  2     ethereum     Ethereum    ETH      2   465.503000 0.04085340</span>
-<span class="co">#&gt;  3 bitcoin-cash Bitcoin Cash    BCH      3  1545.480000 0.13563400</span>
-<span class="co">#&gt;  4       ripple       Ripple    XRP      4     0.250417 0.00002198</span>
-<span class="co">#&gt;  5         iota         IOTA  MIOTA      5     2.776470 0.00024367</span>
-<span class="co">#&gt;  6         dash         Dash   DASH      6   761.527000 0.06683300</span>
-<span class="co">#&gt;  7     litecoin     Litecoin    LTC      7   101.047000 0.00886808</span>
-<span class="co">#&gt;  8 bitcoin-gold Bitcoin Gold    BTG      8   322.052000 0.02826390</span>
-<span class="co">#&gt;  9      cardano      Cardano    ADA      9     0.136738 0.00001200</span>
-<span class="co">#&gt; 10       monero       Monero    XMR     10   201.181000 0.01765600</span>
-<span class="co">#&gt; # ... with 90 more rows, and 9 more variables: `24h_volume_usd` &lt;dbl&gt;,</span>
-<span class="co">#&gt; #   market_cap_usd &lt;dbl&gt;, available_supply &lt;dbl&gt;, total_supply &lt;dbl&gt;,</span>
+<span class="co">#&gt; # A tibble: 1,398 x 15</span>
+<span class="co">#&gt;    id      name    symbol rank  price_~ price_~ `24h_vo~ market_~ availab~</span>
+<span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;fct&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span>
+<span class="co">#&gt;  1 bitcoin Bitcoin BTC    1     1.46e+4 1.00e+0  1.81e10  2.44e11  1.68e 7</span>
+<span class="co">#&gt;  2 ethere~ Ethere~ ETH    2     1.34e+3 9.17e-2  9.72e 9  1.30e11  9.69e 7</span>
+<span class="co">#&gt;  3 ripple  Ripple  XRP    3     2.01e+0 1.37e-4  5.46e 9  7.78e10  3.87e10</span>
+<span class="co">#&gt;  4 bitcoi~ Bitcoi~ BCH    4     2.70e+3 1.85e-1  1.85e 9  4.57e10  1.69e 7</span>
+<span class="co">#&gt;  5 cardano Cardano ADA    5     7.64e-1 5.23e-5  2.35e 8  1.98e10  2.59e10</span>
+<span class="co">#&gt;  6 liteco~ Liteco~ LTC    6     2.49e+2 1.71e-2  1.05e 9  1.36e10  5.47e 7</span>
+<span class="co">#&gt;  7 nem     NEM     XEM    7     1.47e+0 1.01e-4  1.07e 8  1.33e10  9.00e 9</span>
+<span class="co">#&gt;  8 iota    IOTA    MIOTA  8     3.66e+0 2.50e-4  2.32e 8  1.02e10  2.78e 9</span>
+<span class="co">#&gt;  9 stellar Stellar XLM    9     5.57e-1 3.81e-5  2.62e 8  9.96e 9  1.79e10</span>
+<span class="co">#&gt; 10 dash    Dash    DASH   10    1.09e+3 7.44e-2  2.40e 8  8.48e 9  7.81e 6</span>
+<span class="co">#&gt; # ... with 1,388 more rows, and 6 more variables: total_supply &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   max_supply &lt;dbl&gt;, percent_change_1h &lt;dbl&gt;, percent_change_24h &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   percent_change_7d &lt;dbl&gt;, last_updated &lt;dbl&gt;</span>
 
 w &lt;-<span class="st"> </span><span class="kw"><a href="reference/wallet.html">wallet</a></span>(<span class="st">"115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn"</span>)
-<span class="co">#&gt; Recent API call. Waiting for turn. 9.85 seconds until next API call...</span>
-<span class="co">#&gt; Recent API call. Waiting for turn. 9.94 seconds until next API call...</span>
+<span class="co">#&gt; Recent API call. Waiting for turn. 9.77 seconds until next API call...</span>
+<span class="co">#&gt; Recent API call. Waiting for turn. 9.95 seconds until next API call...</span>
 <span class="kw"><a href="reference/wallet_helpers.html">balance</a></span>(w)
-<span class="co">#&gt; [1] 0.09</span></code></pre></div>
+<span class="co">#&gt; [1] 0.2094557</span></code></pre></div>
 <p>For more details see the <a href="https://leonawicz.github.io/rockchain/articles/rockchain.html">vignette</a>.</p>
 </div>
 </div>

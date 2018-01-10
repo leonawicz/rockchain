@@ -179,17 +179,17 @@
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>fiat_symbols</span>()</div><div class='output co'>#&gt; # A tibble: 33 x 3
 #&gt;    currency coinmarketcap.com blockchain.info
-#&gt;       &lt;chr&gt;             &lt;lgl&gt;           &lt;lgl&gt;
-#&gt;  1      AUD              TRUE            TRUE
-#&gt;  2      BRL              TRUE            TRUE
-#&gt;  3      CAD              TRUE            TRUE
-#&gt;  4      CHF              TRUE            TRUE
-#&gt;  5      CLP              TRUE            TRUE
-#&gt;  6      CNY              TRUE            TRUE
-#&gt;  7      CZK              TRUE           FALSE
-#&gt;  8      DKK              TRUE            TRUE
-#&gt;  9      EUR              TRUE            TRUE
-#&gt; 10      GBP              TRUE            TRUE
+#&gt;    &lt;chr&gt;    &lt;lgl&gt;             &lt;lgl&gt;          
+#&gt;  1 AUD      T                 T              
+#&gt;  2 BRL      T                 T              
+#&gt;  3 CAD      T                 T              
+#&gt;  4 CHF      T                 T              
+#&gt;  5 CLP      T                 T              
+#&gt;  6 CNY      T                 T              
+#&gt;  7 CZK      T                 F              
+#&gt;  8 DKK      T                 T              
+#&gt;  9 EUR      T                 T              
+#&gt; 10 GBP      T                 T              
 #&gt; # ... with 23 more rows</div><div class='input'><span class='fu'>fiat_symbols</span>(<span class='kw'>api</span> <span class='kw'>=</span> <span class='st'>"coinmarketcap.com"</span>)</div><div class='output co'>#&gt;  [1] "AUD" "BRL" "CAD" "CHF" "CLP" "CNY" "CZK" "DKK" "EUR" "GBP" "HKD" "HUF"
 #&gt; [13] "IDR" "ILS" "INR" "JPY" "KRW" "MXN" "MYR" "NOK" "NZD" "PHP" "PKR" "PLN"
 #&gt; [25] "RUB" "SEK" "SGD" "THB" "TRY" "TWD" "ZAR" "USD"</div><div class='input'><span class='fu'>fiat_symbols</span>(<span class='kw'>api</span> <span class='kw'>=</span> <span class='st'>"blockchain.info"</span>)</div><div class='output co'>#&gt;  [1] "USD" "AUD" "BRL" "CAD" "CHF" "CLP" "CNY" "DKK" "EUR" "GBP" "HKD" "INR"

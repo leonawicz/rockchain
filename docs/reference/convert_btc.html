@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Available cryptocurrencies. — coins â€¢ rockchain</title>
+<title>Convert Bitcoin units — convert_btc â€¢ rockchain</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -149,29 +149,65 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Available cryptocurrencies.</h1>
+    <h1>Convert Bitcoin units</h1>
     </div>
 
     
-    <p>Available cryptocurrencies, Bitcoin and altcoins, on <code>coinmarketcap.com</code>.</p>
+    <p>Convert among different units of measure for Bitcoin.</p>
     
 
-    <pre class="usage"><span class='no'>coins</span></pre>
-        
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <pre class="usage"><span class='fu'>convert_btc</span>(<span class='no'>x</span>, <span class='kw'>from</span> <span class='kw'>=</span> <span class='st'>"BTC"</span>, <span class='kw'>to</span> <span class='kw'>=</span> <span class='st'>"bits"</span>)
 
-    <p>A data frame with 1398 rows and 3 columns: cryptocurrency <code>id</code>, <code>name</code> and ticker <code>symbol</code>.
-This data frame provides the list of available cryptocurrencies at the time of package publication.
-In case this table is out of date, the full current list can always be obtained from the first three columns returned by <code><a href='ticker.html'>ticker</a></code>.</p>
+<span class='fu'>satoshi</span>(<span class='no'>x</span>)
+
+<span class='fu'>bits</span>(<span class='no'>x</span>)
+
+<span class='fu'>mbtc</span>(<span class='no'>x</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>x</th>
+      <td><p>a numeric value.</p></td>
+    </tr>
+    <tr>
+      <th>from</th>
+      <td><p>the units of <code>x</code>.</p></td>
+    </tr>
+    <tr>
+      <th>to</th>
+      <td><p>new units.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>numeric value.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>This complete conversion function, <code>convert_btc</code>, converts a value <code>x</code> among the following units: BTC, mBTC, bits and satoshi.
+These are the recommended ways of specifying the <code>from</code> and <code>to</code> arguments, though BTC and mBTC
+may be passed as btc and mbtc, respectively. BTC may also be written out as Bitcoin/bitcoin and will also be internally converted to BTC.</p>
+<p>Three shorthand functions, <code>mBTC</code>, <code>bits</code> and <code>satoshi</code>, are also available if you forget the conversion.
+These assume the input is Bitcoin and multiply your value straight to mBTC, bits or satoshi, respectively. See examples.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>convert_btc</span>(<span class='fl'>1</span>, <span class='st'>"BTC"</span>, <span class='st'>"mBTC"</span>)</div><div class='output co'>#&gt; [1] 1000</div><div class='input'><span class='fu'>convert_btc</span>(<span class='fl'>1</span>, <span class='st'>"BTC"</span>, <span class='st'>"bits"</span>)</div><div class='output co'>#&gt; [1] 1000000</div><div class='input'><span class='fu'>convert_btc</span>(<span class='fl'>1</span>, <span class='st'>"BTC"</span>, <span class='st'>"satoshi"</span>)</div><div class='output co'>#&gt; [1] 100000000</div><div class='input'><span class='fu'>convert_btc</span>(<span class='fl'>0.001</span>, <span class='st'>"mBTC"</span>, <span class='st'>"bits"</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='fu'>convert_btc</span>(<span class='fl'>1</span>, <span class='st'>"mBTC"</span>, <span class='st'>"bitcoin"</span>)</div><div class='output co'>#&gt; [1] 0.001</div><div class='input'><span class='fu'>convert_btc</span>(<span class='fl'>100</span>, <span class='st'>"satoshi"</span>, <span class='st'>"bits"</span>)</div><div class='output co'>#&gt; [1] 1</div><div class='input'><span class='fu'>satoshi</span>(<span class='fl'>1e-8</span>)</div><div class='output co'>#&gt; [1] 1e-16</div><div class='input'><span class='fu'>bits</span>(<span class='fl'>1e-6</span>)</div><div class='output co'>#&gt; [1] 0.000000000001</div><div class='input'><span class='fu'>mbtc</span>(<span class='fl'>0.001</span>)</div><div class='output co'>#&gt; [1] 0.000001</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#format">Format</a></li>
-          </ul>
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>
