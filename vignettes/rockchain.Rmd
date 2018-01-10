@@ -173,6 +173,28 @@ w2 <- wallet(id, offset = 10)
 transactions(w2)$tx_index[1] == transactions(w)$tx_index[11]
 ```
 
+## Simple Bitcoin unit conversions
+
+The package provides one complete and three shorthand convenience functions for converting among different units of measure for Bitcoin.
+As the value of Bitcoin has grown by orders of magnitude, there is an increasing push for valuation to be expressed in larger, more intuitive numbers using smaller units.
+Other units include mBTC, bits, and satoshi. Satoshi is the smallest, non-divisible unit of a Bitcoin. There are 100 million satoshi in a Bitcoin.
+Many people are advocating for the use of bits. One bit is equal to 100 satoshi. Therefore bits can have at most the familiar two decimal places.
+mBTC are one one-thousandth of a Bitcoin. Bits can also be thought of as one one-millionth of a Bitcoin, or as micro BTC.
+
+```{r btc_conversions}
+convert_btc(1, from = "BTC", to = "mBTC")
+convert_btc(1, "BTC", "bits")
+convert_btc(1, "BTC", "satoshi")
+convert_btc(0.001, "mBTC", "bits")
+convert_btc(1, "mBTC", "bitcoin")
+convert_btc(100, "satoshi", "bits")
+
+# Shorthand functions assume value is in Bitcoin
+satoshi(1e-8)
+bits(1e-6)
+mbtc(0.001)
+```
+
 ## Plotting data
 
 While packages like `ggplot2` can be leveraged to plot the data directly however you see fit, there are some stock plot functions available in `rockchain`.
