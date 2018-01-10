@@ -1,3 +1,8 @@
+# rockchain 0.3.1 (Release date: 2018-01-10)
+
+* Added Bitcoin unit conversion functions.
+* Updated `coins` metadata data set, readme, introduction vignette, unit tests and function documentation.
+
 # rockchain 0.3.0
 
 * Added integer option to `cap` and `ticker` to return the top n cryptocurrencies by market cap via the `coinmarketcap.com` API.

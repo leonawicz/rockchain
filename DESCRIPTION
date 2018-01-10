@@ -1,5 +1,5 @@
 Package: rockchain
-Version: 0.3.0
+Version: 0.3.1
 Title: A Blockchain Package For R
 Description: The rockchain package provides simple interfaces to https://coinmarketcap.com/ ticker and market cap data and
     https://blockchain.info/ ticker and Bitcoin wallet data. The current package does not yet support additional blockchain APIs.
