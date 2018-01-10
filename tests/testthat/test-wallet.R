@@ -48,8 +48,8 @@ test_that("wallet returns as expected", {
   expect_equal(10e7 * x1[[1]]$total_sent, x2[[1]]$total_sent)
   expect_equal(10e7 * x1[[1]]$final_balance, x2[[1]]$final_balance)
   expect_equal(10e7 * dplyr::bind_rows(x1[[1]]$txs$out)$value, dplyr::bind_rows(x2[[1]]$txs$out)$value)
-  purrr::walk(list(x1, x2, x3, x4a, x4b), ~expect_equal(txn(.x), 115))
-  purrr::walk2(list(x1, x2, x3, x4a, x4b), c(100, 100, 100, 105, 105),
+  purrr::walk(list(x1, x2, x3, x4a, x4b), ~expect_equal(txn(.x), 117))
+  purrr::walk2(list(x1, x2, x3, x4a, x4b), c(100, 100, 100, 107, 107),
                ~expect_equal(nrow(.x[[1]]$txs), .y))
   expect_identical(x4a, x4b)
 
