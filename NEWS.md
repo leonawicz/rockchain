@@ -1,4 +1,4 @@
-# rockchain 0.3.1 (Release date: 2018-01-10)
+# rockchain 0.3.1 (Release date: 2018-01-12)
 
 * Added Bitcoin unit conversion functions.
 * Updated `coins` metadata data set, readme, introduction vignette, unit tests and function documentation.
