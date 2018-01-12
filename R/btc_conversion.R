@@ -62,12 +62,12 @@ convert_btc <- function(x, from = "BTC", to = "bits"){
 
 #' @export
 #' @rdname convert_btc
-satoshi <- function(x) x / 1e8
+satoshi <- function(x) 1e8 * x
 
 #' @export
 #' @rdname convert_btc
-bits <- function(x) x / 1e6
+bits <- function(x) 1e6 * x
 
 #' @export
 #' @rdname convert_btc
-mbtc <- function(x) x / 1000
+mbtc <- function(x) 1000 * x
