@@ -126,7 +126,7 @@
       <h1>Introduction to rockchain</h1>
                         <h4 class="author">Matthew Leonawicz</h4>
             
-            <h4 class="date">2018-01-10</h4>
+            <h4 class="date">2018-01-12</h4>
           </div>
 
     
@@ -144,20 +144,20 @@
 <p>To look at the entire ticker from <code>coinmarketcap.com</code> all you need is to call <code><a href="../reference/cap.html">cap()</a></code>. Below are several ways you can use <code>cap</code>. First return the entire ticker with cryptocurrency prices in USD.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rockchain)
 <span class="kw"><a href="../reference/cap.html">cap</a></span>()
-<span class="co">#&gt; # A tibble: 1,398 x 15</span>
+<span class="co">#&gt; # A tibble: 1,415 x 15</span>
 <span class="co">#&gt;    id      name    symbol rank  price_~ price_~ `24h_vo~ market_~ availab~</span>
 <span class="co">#&gt;    &lt;chr&gt;   &lt;chr&gt;   &lt;chr&gt;  &lt;fct&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 bitcoin Bitcoin BTC    1     1.46e+4 1.00e+0  1.85e10  2.45e11  1.68e 7</span>
-<span class="co">#&gt;  2 ethere~ Ethere~ ETH    2     1.35e+3 9.24e-2  9.83e 9  1.31e11  9.69e 7</span>
-<span class="co">#&gt;  3 ripple  Ripple  XRP    3     2.00e+0 1.37e-4  5.46e 9  7.75e10  3.87e10</span>
-<span class="co">#&gt;  4 bitcoi~ Bitcoi~ BCH    4     2.70e+3 1.84e-1  1.87e 9  4.56e10  1.69e 7</span>
-<span class="co">#&gt;  5 cardano Cardano ADA    5     7.66e-1 5.23e-5  2.36e 8  1.99e10  2.59e10</span>
-<span class="co">#&gt;  6 liteco~ Liteco~ LTC    6     2.49e+2 1.70e-2  1.04e 9  1.36e10  5.47e 7</span>
-<span class="co">#&gt;  7 nem     NEM     XEM    7     1.45e+0 9.90e-5  1.08e 8  1.30e10  9.00e 9</span>
-<span class="co">#&gt;  8 iota    IOTA    MIOTA  8     3.65e+0 2.50e-4  2.33e 8  1.02e10  2.78e 9</span>
-<span class="co">#&gt;  9 stellar Stellar XLM    9     5.54e-1 3.78e-5  2.61e 8  9.90e 9  1.79e10</span>
-<span class="co">#&gt; 10 dash    Dash    DASH   10    1.09e+3 7.44e-2  2.40e 8  8.51e 9  7.81e 6</span>
-<span class="co">#&gt; # ... with 1,388 more rows, and 6 more variables: total_supply &lt;dbl&gt;,</span>
+<span class="co">#&gt;  1 bitcoin Bitcoin BTC    1     1.38e+4 1.00e+0  1.28e10  2.32e11  1.68e 7</span>
+<span class="co">#&gt;  2 ethere~ Ethere~ ETH    2     1.25e+3 9.12e-2  5.60e 9  1.22e11  9.69e 7</span>
+<span class="co">#&gt;  3 ripple  Ripple  XRP    3     2.02e+0 1.47e-4  3.96e 9  7.83e10  3.87e10</span>
+<span class="co">#&gt;  4 bitcoi~ Bitcoi~ BCH    4     2.57e+3 1.87e-1  1.16e 9  4.35e10  1.69e 7</span>
+<span class="co">#&gt;  5 cardano Cardano ADA    5     8.41e-1 6.12e-5  2.49e 8  2.18e10  2.59e10</span>
+<span class="co">#&gt;  6 liteco~ Liteco~ LTC    6     2.34e+2 1.70e-2  7.56e 8  1.28e10  5.47e 7</span>
+<span class="co">#&gt;  7 nem     NEM     XEM    7     1.40e+0 1.02e-4  6.87e 7  1.26e10  9.00e 9</span>
+<span class="co">#&gt;  8 stellar Stellar XLM    8     6.75e-1 4.91e-5  3.99e 8  1.21e10  1.79e10</span>
+<span class="co">#&gt;  9 iota    IOTA    MIOTA  9     3.62e+0 2.63e-4  1.37e 8  1.01e10  2.78e 9</span>
+<span class="co">#&gt; 10 eos     EOS     EOS    10    1.44e+1 1.05e-3  2.35e 9  8.64e 9  5.99e 8</span>
+<span class="co">#&gt; # ... with 1,405 more rows, and 6 more variables: total_supply &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   max_supply &lt;dbl&gt;, percent_change_1h &lt;dbl&gt;, percent_change_24h &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   percent_change_7d &lt;dbl&gt;, last_updated &lt;dbl&gt;</span></code></pre></div>
 <p>The first argument, <code>crypto</code>, is <code>NULL</code> by default. Alternatively, passing it an integer will return the top <code>crypto</code> number of cryptocurrencies by market cap as a tibble data frame.</p>
@@ -165,11 +165,11 @@
 <span class="co">#&gt; # A tibble: 5 x 15</span>
 <span class="co">#&gt;   id    name  symb~ rank  price_~ price_~ `24h_v~ market~ availa~ total_s~</span>
 <span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;fct&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 bitc~ Bitc~ BTC   1     1.46e+4 1.00e+0 1.85e10 2.45e11 1.68e 7  1.68e 7</span>
-<span class="co">#&gt; 2 ethe~ Ethe~ ETH   2     1.35e+3 9.24e-2 9.83e 9 1.31e11 9.69e 7  9.69e 7</span>
-<span class="co">#&gt; 3 ripp~ Ripp~ XRP   3     2.00e+0 1.37e-4 5.46e 9 7.75e10 3.87e10 10.00e10</span>
-<span class="co">#&gt; 4 bitc~ Bitc~ BCH   4     2.70e+3 1.84e-1 1.87e 9 4.56e10 1.69e 7  1.69e 7</span>
-<span class="co">#&gt; 5 card~ Card~ ADA   5     7.66e-1 5.23e-5 2.36e 8 1.99e10 2.59e10  3.11e10</span>
+<span class="co">#&gt; 1 bitc~ Bitc~ BTC   1     1.38e+4 1.00e+0 1.28e10 2.32e11 1.68e 7  1.68e 7</span>
+<span class="co">#&gt; 2 ethe~ Ethe~ ETH   2     1.25e+3 9.11e-2 5.61e 9 1.22e11 9.69e 7  9.69e 7</span>
+<span class="co">#&gt; 3 ripp~ Ripp~ XRP   3     2.02e+0 1.46e-4 3.95e 9 7.81e10 3.87e10 10.00e10</span>
+<span class="co">#&gt; 4 bitc~ Bitc~ BCH   4     2.57e+3 1.87e-1 1.16e 9 4.35e10 1.69e 7  1.69e 7</span>
+<span class="co">#&gt; 5 card~ Card~ ADA   5     8.49e-1 6.17e-5 2.52e 8 2.20e10 2.59e10  3.11e10</span>
 <span class="co">#&gt; # ... with 5 more variables: max_supply &lt;dbl&gt;, percent_change_1h &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   percent_change_24h &lt;dbl&gt;, percent_change_7d &lt;dbl&gt;, last_updated &lt;dbl&gt;</span></code></pre></div>
 <p>If you want ticker data for specific cryptocurrencies, you can filter the results of <code><a href="../reference/cap.html">cap()</a></code> or you can specify them during the call. Passing a single cryptocurrency ticker symbol vs. more than one technically uses two different API endpoints but the results are formatted to what you would expect. Note that symbols are not case sensitive: e.g., <code>"btc"</code> is the same as <code>"BTC"</code>.</p>
@@ -177,7 +177,7 @@
 <span class="co">#&gt; # A tibble: 1 x 15</span>
 <span class="co">#&gt;   id    name  symb~ rank  pric~ pric~ `24h_v~ market~ avail~ total~ max_s~</span>
 <span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt; &lt;fct&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 bitc~ Bitc~ BTC   1     14616  1.00 1.85e10 2.45e11 1.68e7 1.68e7 2.10e7</span>
+<span class="co">#&gt; 1 bitc~ Bitc~ BTC   1     13818  1.00 1.28e10 2.32e11 1.68e7 1.68e7 2.10e7</span>
 <span class="co">#&gt; # ... with 4 more variables: percent_change_1h &lt;dbl&gt;, percent_change_24h</span>
 <span class="co">#&gt; #   &lt;dbl&gt;, percent_change_7d &lt;dbl&gt;, last_updated &lt;dbl&gt;</span>
 
@@ -185,8 +185,8 @@
 <span class="co">#&gt; # A tibble: 2 x 15</span>
 <span class="co">#&gt;   id     name   symbol rank   pric~ price~ `24h_v~ market_~ availa~ total~</span>
 <span class="co">#&gt;   &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;fctr&gt; &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;    &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 ether~ Ether~ ETH    2       1353 0.0924  9.83e9  1.31e11  9.69e7 9.69e7</span>
-<span class="co">#&gt; 2 litec~ Litec~ LTC    6        249 0.0170  1.04e9  1.36e10  5.47e7 5.47e7</span>
+<span class="co">#&gt; 1 ether~ Ether~ ETH    2       1254 0.0912  5.60e9  1.22e11  9.69e7 9.69e7</span>
+<span class="co">#&gt; 2 litec~ Litec~ LTC    6        234 0.0170  7.56e8  1.28e10  5.47e7 5.47e7</span>
 <span class="co">#&gt; # ... with 5 more variables: max_supply &lt;dbl&gt;, percent_change_1h &lt;dbl&gt;,</span>
 <span class="co">#&gt; #   percent_change_24h &lt;dbl&gt;, percent_change_7d &lt;dbl&gt;, last_updated &lt;dbl&gt;</span></code></pre></div>
 <p>The results always include USD and Bitcoin price, USD market cap and USD 24-hour trading volume by default. Using <code>convert</code> to obtain price, market cap and volume in other currencies adds new columns onto the end of the table. <code>convert</code> may be a vector. It may also include other cryptocurrency symbols, not just fiat currencies.</p>
@@ -195,13 +195,13 @@
 <span class="co">#&gt; # A tibble: 1 x 6</span>
 <span class="co">#&gt;   price_eur     `24h_volume_eur` market_cap_eur price_gbp    `24h_v~ mark~</span>
 <span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;            &lt;chr&gt;          &lt;chr&gt;        &lt;chr&gt;   &lt;chr&gt;</span>
-<span class="co">#&gt; 1 1128.02307552 8196274088.64    109298990986   999.28723872 726087~ 9682~</span>
+<span class="co">#&gt; 1 1035.45221589 4626071134.92    100372888902   921.76224876 411814~ 8935~</span>
 
 <span class="kw"><a href="../reference/cap.html">cap</a></span>(<span class="dt">crypto =</span> <span class="st">"BTC"</span>, <span class="dt">convert =</span> <span class="st">"ETH"</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dv">16</span><span class="op">:</span><span class="dv">18</span>)
 <span class="co">#&gt; # A tibble: 1 x 3</span>
 <span class="co">#&gt;   price_eth     `24h_volume_eth` market_cap_eth</span>
 <span class="co">#&gt;   &lt;chr&gt;         &lt;chr&gt;            &lt;chr&gt;         </span>
-<span class="co">#&gt; 1 10.9360701047 13849123.0636    183663369.0</span></code></pre></div>
+<span class="co">#&gt; 1 11.0591562577 10232136.6479    185778342.0</span></code></pre></div>
 </div>
 <div id="total-global-market-cap" class="section level2">
 <h2 class="hasAnchor">
@@ -211,7 +211,7 @@
 <span class="co">#&gt; # A tibble: 1 x 7</span>
 <span class="co">#&gt;   last_updated total_market_cap total_24h_volume bitco~ activ~ acti~ acti~</span>
 <span class="co">#&gt;          &lt;int&gt;            &lt;dbl&gt;            &lt;dbl&gt;  &lt;dbl&gt;  &lt;int&gt; &lt;int&gt; &lt;int&gt;</span>
-<span class="co">#&gt; 1   1515605661     729623225417      54049023712   33.6    900   487  7721</span></code></pre></div>
+<span class="co">#&gt; 1   1515779362     705460138372      38791229773   32.9    903   502  7871</span></code></pre></div>
 <p>At this point you have seen three different ways to specify <code>crypto</code>: either as <code>NULL</code> to yield the full ticker, an integer to yield to top coins by market cap, or as a character vector ticker symbols for the specific cryptocurrencies of interest.</p>
 </div>
 <div id="blockchain-info-ticker" class="section level2">
@@ -220,25 +220,25 @@
 <p>If you are looking at Bitcoin only and working specifically with the <code>blockchain.info</code> API, you can also obtain ticker information for Bitcoin with <code>bcinfo</code>. There is only a <code>fiat</code> argument, analogous to <code>convert</code>, since <code>blockchain.info</code> is specific to Bitcoin and ticker results from the API are only available in fiat currencies.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/bcinfo.html">bcinfo</a></span>()
 <span class="co">#&gt; # A tibble: 22 x 6</span>
-<span class="co">#&gt;      `15m`    last     buy    sell symbol   currency</span>
-<span class="co">#&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;   </span>
-<span class="co">#&gt;  1   14345   14345   14347   14343 $        USD     </span>
-<span class="co">#&gt;  2   18289   18289   18291   18286 $        AUD     </span>
-<span class="co">#&gt;  3   46450   46450   46456   46443 R$       BRL     </span>
-<span class="co">#&gt;  4   17911   17911   17914   17909 $        CAD     </span>
-<span class="co">#&gt;  5   14030   14030   14032   14028 CHF      CHF     </span>
-<span class="co">#&gt;  6 8738873 8738873 8740144 8737603 $        CLP     </span>
-<span class="co">#&gt;  7   93361   93361   93375   93348 "\u00a5" CNY     </span>
-<span class="co">#&gt;  8   89226   89226   89239   89213 kr       DKK     </span>
-<span class="co">#&gt;  9   11995   11995   12007   11983 "\u20ac" EUR     </span>
-<span class="co">#&gt; 10   10611   10611   10613   10610 "\u00a3" GBP     </span>
+<span class="co">#&gt;      `15m`    last     buy    sell symbol currency</span>
+<span class="co">#&gt;      &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;   </span>
+<span class="co">#&gt;  1   13638   13638   13640   13637 $      USD     </span>
+<span class="co">#&gt;  2   17289   17289   17291   17287 $      AUD     </span>
+<span class="co">#&gt;  3   43868   43868   43872   43863 R$     BRL     </span>
+<span class="co">#&gt;  4   17070   17070   17072   17068 $      CAD     </span>
+<span class="co">#&gt;  5   13238   13238   13239   13236 CHF    CHF     </span>
+<span class="co">#&gt;  6 8227017 8227017 8227840 8226193 $      CLP     </span>
+<span class="co">#&gt;  7   88176   88176   88185   88167 ¥      CNY     </span>
+<span class="co">#&gt;  8   83596   83596   83604   83587 kr     DKK     </span>
+<span class="co">#&gt;  9   11291   11291   11299   11283 €      EUR     </span>
+<span class="co">#&gt; 10    9964    9964    9965    9963 £      GBP     </span>
 <span class="co">#&gt; # ... with 12 more rows</span>
 
 <span class="kw"><a href="../reference/bcinfo.html">bcinfo</a></span>(<span class="dt">fiat =</span> <span class="st">"GBP"</span>)
 <span class="co">#&gt; # A tibble: 1 x 6</span>
-<span class="co">#&gt;   `15m`  last   buy  sell symbol   currency</span>
-<span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;   </span>
-<span class="co">#&gt; 1 10611 10611 10613 10610 "\u00a3" GBP</span></code></pre></div>
+<span class="co">#&gt;   `15m`  last   buy  sell symbol currency</span>
+<span class="co">#&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;   </span>
+<span class="co">#&gt; 1  9974  9974  9976  9972 £      GBP</span></code></pre></div>
 </div>
 <div id="wrappers-for-ticker-function" class="section level2">
 <h2 class="hasAnchor">
@@ -316,10 +316,10 @@
 <p>Several convenient accessors are provided. These are simple getter functions. They are vectorized to return information pertaining to all elements of a wallet list.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">id &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn"</span>, <span class="st">"1KennyH9grzif79WbaQDHpqgTnm25j4rRj"</span>)
 w &lt;-<span class="st"> </span><span class="kw"><a href="../reference/wallet.html">wallet</a></span>(id)  <span class="co"># a wallet list with two addresses</span>
-<span class="co">#&gt; Recent API call. Waiting for turn. 9.95 seconds until next API call...</span>
+<span class="co">#&gt; Recent API call. Waiting for turn. 9.97 seconds until next API call...</span>
 <span class="co">#&gt; Recent API call. Waiting for turn. 9.86 seconds until next API call...</span>
-<span class="co">#&gt; Recent API call. Waiting for turn. 9.95 seconds until next API call...</span>
-<span class="co">#&gt; Recent API call. Waiting for turn. 9.71 seconds until next API call...</span>
+<span class="co">#&gt; Recent API call. Waiting for turn. 9.93 seconds until next API call...</span>
+<span class="co">#&gt; Recent API call. Waiting for turn. 9.72 seconds until next API call...</span>
 <span class="kw"><a href="../reference/wallet_helpers.html">balance</a></span>(w)  <span class="co"># check the balance, vectorized</span>
 <span class="co">#&gt; [1] 0.2094557 0.0000000</span></code></pre></div>
 <p>Here are all of the available getter functions.</p>
@@ -368,19 +368,19 @@ w &lt;-<span class="st"> </span><span class="kw"><a href="../reference/wallet.ht
 <p>By default, the <code>blockchain.info</code> API returns Bitcoin values in Satoshis. One Satoshi is the smallest unit of value, equal to <span class="math inline">\(`1 / 10^7`\)</span> Bitcoin. But since many APIs and websites report value in Bitcoin, <code>rockchain</code> does the same. This can be switched with <code>satoshi = TRUE</code>. This affects the total received, total sent, final balance, and the <code>value</code> column inside the <code>out</code> data frames that appear in the transaction details table.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">id &lt;-<span class="st"> "115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn"</span>
 w &lt;-<span class="st"> </span><span class="kw"><a href="../reference/wallet.html">wallet</a></span>(id)
-<span class="co">#&gt; Recent API call. Waiting for turn. 9.7 seconds until next API call...</span>
-<span class="co">#&gt; Recent API call. Waiting for turn. 9.78 seconds until next API call...</span>
-<span class="co">#&gt; Recent API call. Waiting for turn. 9.94 seconds until next API call...</span>
+<span class="co">#&gt; Recent API call. Waiting for turn. 9.73 seconds until next API call...</span>
+<span class="co">#&gt; Recent API call. Waiting for turn. 9.83 seconds until next API call...</span>
+<span class="co">#&gt; Recent API call. Waiting for turn. 9.97 seconds until next API call...</span>
 w2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/wallet.html">wallet</a></span>(id, <span class="dt">satoshi =</span> <span class="ot">TRUE</span>)
-<span class="co">#&gt; Recent API call. Waiting for turn. 9.75 seconds until next API call...</span>
-<span class="co">#&gt; Recent API call. Waiting for turn. 9.94 seconds until next API call...</span>
-<span class="co">#&gt; Recent API call. Waiting for turn. 9.93 seconds until next API call...</span>
+<span class="co">#&gt; Recent API call. Waiting for turn. 9.71 seconds until next API call...</span>
+<span class="co">#&gt; Recent API call. Waiting for turn. 9.95 seconds until next API call...</span>
+<span class="co">#&gt; Recent API call. Waiting for turn. 9.95 seconds until next API call...</span>
 <span class="kw"><a href="../reference/wallet_helpers.html">balance</a></span>(w2) <span class="op">==</span><span class="st"> </span><span class="kw"><a href="../reference/wallet_helpers.html">balance</a></span>(w) <span class="op">*</span><span class="st"> </span><span class="dv">100000000</span>
 <span class="co">#&gt; [1] TRUE</span></code></pre></div>
 <p>An <code>offset</code> can used passed to shift the starting point of the transaction record. The default offset is zero.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">w2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/wallet.html">wallet</a></span>(id, <span class="dt">offset =</span> <span class="dv">10</span>)
-<span class="co">#&gt; Recent API call. Waiting for turn. 9.94 seconds until next API call...</span>
-<span class="co">#&gt; Recent API call. Waiting for turn. 9.85 seconds until next API call...</span>
+<span class="co">#&gt; Recent API call. Waiting for turn. 9.92 seconds until next API call...</span>
+<span class="co">#&gt; Recent API call. Waiting for turn. 9.83 seconds until next API call...</span>
 <span class="co">#&gt; Recent API call. Waiting for turn. 9.95 seconds until next API call...</span>
 <span class="kw"><a href="../reference/wallet_helpers.html">transactions</a></span>(w2)<span class="op">$</span>tx_index[<span class="dv">1</span>] <span class="op">==</span><span class="st"> </span><span class="kw"><a href="../reference/wallet_helpers.html">transactions</a></span>(w)<span class="op">$</span>tx_index[<span class="dv">11</span>]
 <span class="co">#&gt; [1] TRUE</span></code></pre></div>
@@ -404,11 +404,11 @@ w2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/wallet.h
 
 <span class="co"># Shorthand functions assume value is in Bitcoin</span>
 <span class="kw"><a href="../reference/convert_btc.html">satoshi</a></span>(<span class="fl">0.00000001</span>)
-<span class="co">#&gt; [1] 1e-16</span>
+<span class="co">#&gt; [1] 1</span>
 <span class="kw"><a href="../reference/convert_btc.html">bits</a></span>(<span class="fl">0.000001</span>)
-<span class="co">#&gt; [1] 0.000000000001</span>
+<span class="co">#&gt; [1] 1</span>
 <span class="kw"><a href="../reference/convert_btc.html">mbtc</a></span>(<span class="fl">0.001</span>)
-<span class="co">#&gt; [1] 0.000001</span></code></pre></div>
+<span class="co">#&gt; [1] 1</span></code></pre></div>
 </div>
 <div id="plotting-data" class="section level2">
 <h2 class="hasAnchor">

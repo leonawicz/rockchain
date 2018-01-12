@@ -23,26 +23,26 @@ Example
 ``` r
 library(rockchain)
 cap()
-#> # A tibble: 1,398 x 15
+#> # A tibble: 1,415 x 15
 #>    id      name    symbol rank  price_~ price_~ `24h_vo~ market_~ availab~
 #>    <chr>   <chr>   <chr>  <fct>   <dbl>   <dbl>    <dbl>    <dbl>    <dbl>
-#>  1 bitcoin Bitcoin BTC    1     1.46e+4 1.00e+0  1.85e10  2.45e11  1.68e 7
-#>  2 ethere~ Ethere~ ETH    2     1.35e+3 9.24e-2  9.83e 9  1.31e11  9.69e 7
-#>  3 ripple  Ripple  XRP    3     2.00e+0 1.37e-4  5.46e 9  7.75e10  3.87e10
-#>  4 bitcoi~ Bitcoi~ BCH    4     2.70e+3 1.84e-1  1.87e 9  4.56e10  1.69e 7
-#>  5 cardano Cardano ADA    5     7.66e-1 5.23e-5  2.36e 8  1.99e10  2.59e10
-#>  6 liteco~ Liteco~ LTC    6     2.49e+2 1.70e-2  1.04e 9  1.36e10  5.47e 7
-#>  7 nem     NEM     XEM    7     1.45e+0 9.90e-5  1.08e 8  1.30e10  9.00e 9
-#>  8 iota    IOTA    MIOTA  8     3.65e+0 2.50e-4  2.33e 8  1.02e10  2.78e 9
-#>  9 stellar Stellar XLM    9     5.54e-1 3.78e-5  2.61e 8  9.90e 9  1.79e10
-#> 10 dash    Dash    DASH   10    1.09e+3 7.44e-2  2.40e 8  8.51e 9  7.81e 6
-#> # ... with 1,388 more rows, and 6 more variables: total_supply <dbl>,
+#>  1 bitcoin Bitcoin BTC    1     1.38e+4 1.00e+0  1.28e10  2.32e11  1.68e 7
+#>  2 ethere~ Ethere~ ETH    2     1.25e+3 9.11e-2  5.59e 9  1.21e11  9.69e 7
+#>  3 ripple  Ripple  XRP    3     2.02e+0 1.46e-4  3.96e 9  7.81e10  3.87e10
+#>  4 bitcoi~ Bitcoi~ BCH    4     2.57e+3 1.87e-1  1.16e 9  4.35e10  1.69e 7
+#>  5 cardano Cardano ADA    5     8.35e-1 6.07e-5  2.46e 8  2.17e10  2.59e10
+#>  6 liteco~ Liteco~ LTC    6     2.34e+2 1.70e-2  7.56e 8  1.28e10  5.47e 7
+#>  7 nem     NEM     XEM    7     1.40e+0 1.02e-4  6.89e 7  1.26e10  9.00e 9
+#>  8 stellar Stellar XLM    8     6.76e-1 4.91e-5  4.00e 8  1.21e10  1.79e10
+#>  9 iota    IOTA    MIOTA  9     3.59e+0 2.61e-4  1.37e 8  9.97e 9  2.78e 9
+#> 10 eos     EOS     EOS    10    1.43e+1 1.04e-3  2.34e 9  8.58e 9  5.99e 8
+#> # ... with 1,405 more rows, and 6 more variables: total_supply <dbl>,
 #> #   max_supply <dbl>, percent_change_1h <dbl>, percent_change_24h <dbl>,
 #> #   percent_change_7d <dbl>, last_updated <dbl>
 
 w <- wallet("115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn")
 #> Recent API call. Waiting for turn. 9.83 seconds until next API call...
-#> Recent API call. Waiting for turn. 9.95 seconds until next API call...
+#> Recent API call. Waiting for turn. 9.98 seconds until next API call...
 balance(w)
 #> [1] 0.2094557
 ```
