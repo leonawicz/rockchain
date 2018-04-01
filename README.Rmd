@@ -11,7 +11,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# rockchain
+# rockchain <a hef="https://github.com/leonawicz/rockchain/blob/master/data-raw/rockchain.png?raw=true" _target="blank"><img src="https://github.com/leonawicz/rockchain/blob/master/inst/rockchain.png?raw=true" style="margin-bottom:5px;" width="120" align="right"></a>
 
 [![Travis-CI Build Status](https://travis-ci.org/leonawicz/rockchain.svg?branch=master)](https://travis-ci.org/leonawicz/rockchain)
 [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/leonawicz/rockchain?branch=master&svg=true)](https://ci.appveyor.com/project/leonawicz/rockchain)

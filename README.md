@@ -1,50 +1,58 @@
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-rockchain
-=========
+rockchain <a hef="https://github.com/leonawicz/rockchain/blob/master/data-raw/rockchain.png?raw=true" _target="blank"><img src="https://github.com/leonawicz/rockchain/blob/master/inst/rockchain.png?raw=true" style="margin-bottom:5px;" width="120" align="right"></a>
+=========================================================================================================================================================================================================================================================================
 
-[![Travis-CI Build Status](https://travis-ci.org/leonawicz/rockchain.svg?branch=master)](https://travis-ci.org/leonawicz/rockchain) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/leonawicz/rockchain?branch=master&svg=true)](https://ci.appveyor.com/project/leonawicz/rockchain) [![Coverage Status](https://img.shields.io/codecov/c/github/leonawicz/rockchain/master.svg)](https://codecov.io/github/leonawicz/rockchain?branch=master)
+[![Travis-CI Build
+Status](https://travis-ci.org/leonawicz/rockchain.svg?branch=master)](https://travis-ci.org/leonawicz/rockchain)
+[![AppVeyor Build
+Status](https://ci.appveyor.com/api/projects/status/github/leonawicz/rockchain?branch=master&svg=true)](https://ci.appveyor.com/project/leonawicz/rockchain)
+[![Coverage
+Status](https://img.shields.io/codecov/c/github/leonawicz/rockchain/master.svg)](https://codecov.io/github/leonawicz/rockchain?branch=master)
 
-The `rockchain` package provides simple interfaces to [coinmarketcap.com](https://coinmarketcap.com/) ticker and market cap data and [blockchain.info](https://blockchain.info/) ticker and Bitcoin wallet data. The current package does not yet support additional blockchain APIs, but will in the future. For now, it offers cryptocurrency market data retrieval and Bitcoin wallet transaction data retrieval via the two currently available APIs.
+The `rockchain` package provides simple interfaces to
+[coinmarketcap.com](https://coinmarketcap.com/) ticker and market cap
+data and [blockchain.info](https://blockchain.info/) ticker and Bitcoin
+wallet data. The current package does not yet support additional
+blockchain APIs, but will in the future. For now, it offers
+cryptocurrency market data retrieval and Bitcoin wallet transaction data
+retrieval via the two currently available APIs.
 
 Installation
 ------------
 
 You can install rockchain from github with:
 
-``` r
-# install.packages('devtools')
-devtools::install_github("leonawicz/rockchain")
-```
+    # install.packages('devtools')
+    devtools::install_github("leonawicz/rockchain")
 
 Example
 -------
 
-``` r
-library(rockchain)
-cap()
-#> # A tibble: 1,415 x 15
-#>    id      name    symbol rank  price_~ price_~ `24h_vo~ market_~ availab~
-#>    <chr>   <chr>   <chr>  <fct>   <dbl>   <dbl>    <dbl>    <dbl>    <dbl>
-#>  1 bitcoin Bitcoin BTC    1     1.38e+4 1.00e+0  1.28e10  2.32e11  1.68e 7
-#>  2 ethere~ Ethere~ ETH    2     1.25e+3 9.11e-2  5.59e 9  1.21e11  9.69e 7
-#>  3 ripple  Ripple  XRP    3     2.02e+0 1.46e-4  3.96e 9  7.81e10  3.87e10
-#>  4 bitcoi~ Bitcoi~ BCH    4     2.57e+3 1.87e-1  1.16e 9  4.35e10  1.69e 7
-#>  5 cardano Cardano ADA    5     8.35e-1 6.07e-5  2.46e 8  2.17e10  2.59e10
-#>  6 liteco~ Liteco~ LTC    6     2.34e+2 1.70e-2  7.56e 8  1.28e10  5.47e 7
-#>  7 nem     NEM     XEM    7     1.40e+0 1.02e-4  6.89e 7  1.26e10  9.00e 9
-#>  8 stellar Stellar XLM    8     6.76e-1 4.91e-5  4.00e 8  1.21e10  1.79e10
-#>  9 iota    IOTA    MIOTA  9     3.59e+0 2.61e-4  1.37e 8  9.97e 9  2.78e 9
-#> 10 eos     EOS     EOS    10    1.43e+1 1.04e-3  2.34e 9  8.58e 9  5.99e 8
-#> # ... with 1,405 more rows, and 6 more variables: total_supply <dbl>,
-#> #   max_supply <dbl>, percent_change_1h <dbl>, percent_change_24h <dbl>,
-#> #   percent_change_7d <dbl>, last_updated <dbl>
+    library(rockchain)
+    cap()
+    #> # A tibble: 1,596 x 15
+    #>    id         name       symbol rank  price_usd price_btc `24h_volume_usd`
+    #>    <chr>      <chr>      <chr>  <fct>     <dbl>     <dbl>            <dbl>
+    #>  1 bitcoin    Bitcoin    BTC    1      6756     1.00            4087320000
+    #>  2 ethereum   Ethereum   ETH    2       379     0.0565          1085240000
+    #>  3 ripple     Ripple     XRP    3         0.493 0.0000737        224946000
+    #>  4 bitcoin-c~ Bitcoin C~ BCH    4       660     0.0984           286396000
+    #>  5 litecoin   Litecoin   LTC    5       113     0.0169           253058000
+    #>  6 eos        EOS        EOS    6         5.76  0.000859         204308000
+    #>  7 cardano    Cardano    ADA    7         0.148 0.0000221        108073000
+    #>  8 stellar    Stellar    XLM    8         0.200 0.0000299         64707400
+    #>  9 neo        NEO        NEO    9        48.2   0.00719           58079400
+    #> 10 iota       IOTA       MIOTA  10        1.06  0.000158          25621200
+    #> # ... with 1,586 more rows, and 8 more variables: market_cap_usd <dbl>,
+    #> #   available_supply <dbl>, total_supply <dbl>, max_supply <dbl>,
+    #> #   percent_change_1h <dbl>, percent_change_24h <dbl>,
+    #> #   percent_change_7d <dbl>, last_updated <dbl>
 
-w <- wallet("115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn")
-#> Recent API call. Waiting for turn. 9.83 seconds until next API call...
-#> Recent API call. Waiting for turn. 9.98 seconds until next API call...
-balance(w)
-#> [1] 0.2094557
-```
+    w <- wallet("115p7UMMngoj1pMvkpHijcRdfJNXj6LrLn")
+    #> Recent API call. Waiting for turn. 9.9 seconds until next API call...
+    #> Recent API call. Waiting for turn. 9.95 seconds until next API call...
+    balance(w)
+    #> [1] 0.2694557
 
-For more details see the [vignette](https://leonawicz.github.io/rockchain/articles/rockchain.html).
+For more details see the
+[vignette](https://leonawicz.github.io/rockchain/articles/rockchain.html).
