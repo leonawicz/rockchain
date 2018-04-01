@@ -11,7 +11,7 @@ hex_plot <- function(out, mult = 1){
           filename = out)
   x <- last_plot() + geom_pkgname("chain", 1.335, 1.4, "seagreen1", "Aller_Rg", mult * 28)
   # overwrite file for larger size
-  if(mult != 1) ggsave(out, x, width = mult*43.9, height = mult*50.8, bg = "transparent", units = "mm")
+  ggsave(out, x, width = mult*43.9, height = mult*50.8, bg = "transparent", units = "mm")
 }
 
 hex_plot(out[1], 4) # multiplier for larger sticker size
