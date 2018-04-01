@@ -18,13 +18,16 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Function reference" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -46,6 +49,8 @@
 
 </script>
 
+
+
   </head>
 
   <body>
@@ -59,8 +64,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">rockchain</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">rockchain</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.1</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -70,13 +79,13 @@
   </a>
 </li>
 <li>
-  <a href="../articles/rockchain.html">Get Started</a>
+  <a href="../articles/rockchain.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -139,6 +148,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -146,132 +156,127 @@
       
       </header>
 
-      <div class="row">
-  <div class="col-md-9">
+<div class="row">
+  <div class="contents col-md-9">
     <div class="page-header">
-      <h1>
-        Reference
-        <small>version&nbsp;0.3.1</small>
-      </h1>
+      <h1>Reference</h1>
     </div>
 
-    <div class="contents">
-      <table class="ref-index">
+    <table class="ref-index">
 
-      <colgroup>
-        <col class="alias" />
-        <col class="title" />
-      </colgroup>
+    <colgroup>
+      <col class="alias" />
+      <col class="title" />
+    </colgroup>
 
-      <tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-package" class="hasAnchor"><a href="#section-package" class="anchor"></a>Package</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="rockchain.html">rockchain</a></code> </p>
-          </td>
-          <td><p>rockchain: a blockchain package for R.</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-coin-metadata-and-helpers" class="hasAnchor"><a href="#section-coin-metadata-and-helpers" class="anchor"></a>Coin metadata and helpers</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="coins.html">coins</a></code> </p>
-          </td>
-          <td><p>Available cryptocurrencies.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="coin_helpers.html">coin_id</a></code> <code><a href="coin_helpers.html">coin_name</a></code> <code><a href="coin_helpers.html">coin_symbol</a></code> </p>
-          </td>
-          <td><p>Coin helper functions</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-current-ticker-market-cap" class="hasAnchor"><a href="#section-current-ticker-market-cap" class="anchor"></a>Current ticker/market cap</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="cap.html">cap</a></code> </p>
-          </td>
-          <td><p>Global cryptocurrency market cap</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="bcinfo.html">bcinfo</a></code> </p>
-          </td>
-          <td><p>Bitcoin ticker data from blockchain.info</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="ticker.html">ticker</a></code> </p>
-          </td>
-          <td><p>Cryptocurrency ticker/market cap data</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-wallet-transaction-data" class="hasAnchor"><a href="#section-wallet-transaction-data" class="anchor"></a>Wallet transaction data</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="wallet.html">wallet</a></code> </p>
-          </td>
-          <td><p>Get wallet info</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="wallet_helpers.html">hash</a></code> <code><a href="wallet_helpers.html">address</a></code> <code><a href="wallet_helpers.html">received</a></code> <code><a href="wallet_helpers.html">sent</a></code> <code><a href="wallet_helpers.html">balance</a></code> <code><a href="wallet_helpers.html">txn</a></code> <code><a href="wallet_helpers.html">transactions</a></code> </p>
-          </td>
-          <td><p>Wallet helper functions</p></td>
-        </tr>
-      </tbody><tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-other-helper-functions" class="hasAnchor"><a href="#section-other-helper-functions" class="anchor"></a>Other helper functions</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="apis.html">apis</a></code> </p>
-          </td>
-          <td><p>Available APIs</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="fiat_symbols.html">fiat_symbols</a></code> </p>
-          </td>
-          <td><p>Valid fiat ticker symbols</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="convert_btc.html">convert_btc</a></code> <code><a href="convert_btc.html">satoshi</a></code> <code><a href="convert_btc.html">bits</a></code> <code><a href="convert_btc.html">mbtc</a></code> </p>
-          </td>
-          <td><p>Convert Bitcoin units</p></td>
-        </tr>
-      </tbody>
-      </table>
-    </div>
+    <tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-package" class="hasAnchor"><a href="#section-package" class="anchor"></a>Package</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        <!--  -->
+        <td>
+          <p><code><a href="rockchain.html">rockchain</a></code> </p>
+        </td>
+        <td><p>rockchain: a blockchain package for R.</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-coin-metadata-and-helpers" class="hasAnchor"><a href="#section-coin-metadata-and-helpers" class="anchor"></a>Coin metadata and helpers</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        <!--  -->
+        <td>
+          <p><code><a href="coins.html">coins</a></code> </p>
+        </td>
+        <td><p>Available cryptocurrencies.</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="coin_helpers.html">coin_id()</a></code> <code><a href="coin_helpers.html">coin_name()</a></code> <code><a href="coin_helpers.html">coin_symbol()</a></code> </p>
+        </td>
+        <td><p>Coin helper functions</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-current-ticker-market-cap" class="hasAnchor"><a href="#section-current-ticker-market-cap" class="anchor"></a>Current ticker/market cap</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        <!--  -->
+        <td>
+          <p><code><a href="cap.html">cap()</a></code> </p>
+        </td>
+        <td><p>Global cryptocurrency market cap</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="bcinfo.html">bcinfo()</a></code> </p>
+        </td>
+        <td><p>Bitcoin ticker data from blockchain.info</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="ticker.html">ticker()</a></code> </p>
+        </td>
+        <td><p>Cryptocurrency ticker/market cap data</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-wallet-transaction-data" class="hasAnchor"><a href="#section-wallet-transaction-data" class="anchor"></a>Wallet transaction data</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        <!--  -->
+        <td>
+          <p><code><a href="wallet.html">wallet()</a></code> </p>
+        </td>
+        <td><p>Get wallet info</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="wallet_helpers.html">hash()</a></code> <code><a href="wallet_helpers.html">address()</a></code> <code><a href="wallet_helpers.html">received()</a></code> <code><a href="wallet_helpers.html">sent()</a></code> <code><a href="wallet_helpers.html">balance()</a></code> <code><a href="wallet_helpers.html">txn()</a></code> <code><a href="wallet_helpers.html">transactions()</a></code> </p>
+        </td>
+        <td><p>Wallet helper functions</p></td>
+      </tr>
+    </tbody><tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-other-helper-functions" class="hasAnchor"><a href="#section-other-helper-functions" class="anchor"></a>Other helper functions</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        <!--  -->
+        <td>
+          <p><code><a href="apis.html">apis()</a></code> </p>
+        </td>
+        <td><p>Available APIs</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="fiat_symbols.html">fiat_symbols()</a></code> </p>
+        </td>
+        <td><p>Valid fiat ticker symbols</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="convert_btc.html">convert_btc()</a></code> <code><a href="convert_btc.html">satoshi()</a></code> <code><a href="convert_btc.html">bits()</a></code> <code><a href="convert_btc.html">mbtc()</a></code> </p>
+        </td>
+        <td><p>Convert Bitcoin units</p></td>
+      </tr>
+    </tbody>
+    </table>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -292,11 +297,14 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

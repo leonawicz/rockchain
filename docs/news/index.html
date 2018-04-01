@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>All news • rockchain</title>
+<title>Changelog • rockchain</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -18,13 +18,16 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Changelog" />
+
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -46,6 +49,8 @@
 
 </script>
 
+
+
   </head>
 
   <body>
@@ -59,8 +64,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">rockchain</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">rockchain</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.1</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -70,13 +79,13 @@
   </a>
 </li>
 <li>
-  <a href="../articles/rockchain.html">Get Started</a>
+  <a href="../articles/rockchain.html">Get started</a>
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -139,6 +148,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -146,16 +156,15 @@
       
       </header>
 
-      <div class="row">
-
-  <div class="col-md-9">
+<div class="row">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Change log <small>All releases</small></h1>
+      <h1>Changelog <small></small></h1>
+      <small>Source: <a href='https://github.com/leonawicz/rockchain/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div class="contents">
     <div id="rockchain-0-3-1-release-date-2018-01-12" class="section level1">
-<h1 class="hasAnchor">
+<h1 class="page-header">
 <a href="#rockchain-0-3-1-release-date-2018-01-12" class="anchor"></a>rockchain 0.3.1 (Release date: 2018-01-12)</h1>
 <ul>
 <li>Added Bitcoin unit conversion functions.</li>
@@ -163,7 +172,7 @@
 </ul>
 </div>
     <div id="rockchain-0-3-0" class="section level1">
-<h1 class="hasAnchor">
+<h1 class="page-header">
 <a href="#rockchain-0-3-0" class="anchor"></a>rockchain 0.3.0</h1>
 <ul>
 <li>Added integer option to <code>cap</code> and <code>ticker</code> to return the top n cryptocurrencies by market cap via the <code>coinmarketcap.com</code> API.</li>
@@ -174,7 +183,7 @@
 </ul>
 </div>
     <div id="rockchain-0-2-0" class="section level1">
-<h1 class="hasAnchor">
+<h1 class="page-header">
 <a href="#rockchain-0-2-0" class="anchor"></a>rockchain 0.2.0</h1>
 <ul>
 <li>Refactored <code>wallet</code> and related support functions.</li>
@@ -183,7 +192,7 @@
 </ul>
 </div>
     <div id="rockchain-0-1-0" class="section level1">
-<h1 class="hasAnchor">
+<h1 class="page-header">
 <a href="#rockchain-0-1-0" class="anchor"></a>rockchain 0.1.0</h1>
 <ul>
 <li>Refactored <code>ticker</code> and add related functions.</li>
@@ -191,7 +200,7 @@
 </ul>
 </div>
     <div id="rockchain-0-0-1" class="section level1">
-<h1 class="hasAnchor">
+<h1 class="page-header">
 <a href="#rockchain-0-0-1" class="anchor"></a>rockchain 0.0.1</h1>
 <ul>
 <li>Added functions and documentation, including improvement to <code>wallet</code>.
@@ -205,13 +214,12 @@
 </ul>
 </div>
     <div id="rockchain-0-0-0-9000" class="section level1">
-<h1 class="hasAnchor">
+<h1 class="page-header">
 <a href="#rockchain-0-0-0-9000" class="anchor"></a>rockchain 0.0.0.9000</h1>
 <ul>
 <li>Initialized development of <code>rockchain</code> and set up package scaffolding.</li>
 </ul>
 </div>
-    </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -236,11 +244,14 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+
